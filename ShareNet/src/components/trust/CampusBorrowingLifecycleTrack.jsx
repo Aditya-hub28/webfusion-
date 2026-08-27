@@ -128,7 +128,7 @@ export default function CampusBorrowingLifecycleTrack() {
     const ActiveIcon = activeStageObj.icon;
 
     return (
-        <div className="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white rounded-3xl p-6 sm:p-10 shadow-2xl border border-indigo-900/60 space-y-8 relative overflow-hidden">
+        <div className="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white rounded-3xl p-4 sm:p-8 lg:p-10 shadow-2xl border border-indigo-900/60 space-y-6 sm:space-y-8 relative overflow-hidden max-w-full">
             {/* Background Glow */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent pointer-events-none"></div>
 
@@ -136,9 +136,9 @@ export default function CampusBorrowingLifecycleTrack() {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800/80 pb-6 relative z-10">
                 <div className="space-y-1">
                     <span className="text-xs font-black uppercase tracking-widest text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-800 inline-flex items-center gap-1.5 shadow-sm">
-                        <Train size={15} /> Campus Express • Complete Borrowing Life Cycle Track
+                        <Train size={15} /> Campus Express • Borrowing Life Cycle Track
                     </span>
-                    <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
+                    <h2 className="text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
                         The 10-Stage Borrowing Life Cycle Express
                     </h2>
                     <p className="text-xs sm:text-sm text-slate-300 font-medium">
@@ -157,73 +157,75 @@ export default function CampusBorrowingLifecycleTrack() {
                 </div>
             </div>
 
-            {/* RAIL TRACK CONTAINER */}
-            <div className="relative pt-12 pb-8 px-4 z-10">
-                {/* Glowing Rail Track Line */}
-                <div className="h-3.5 bg-slate-800/90 rounded-full w-full relative border border-slate-700/80 overflow-visible">
-                    {/* Active Progress Fill Line */}
-                    <div
-                        className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-500 rounded-full transition-all duration-700 shadow-[0_0_12px_rgba(16,185,129,0.5)]"
-                        style={{ width: `${(currentStage / (stages.length - 1)) * 100}%` }}
-                    ></div>
+            {/* RAIL TRACK CONTAINER WITH RESPONSIVE OVERFLOW CONTROL */}
+            <div className="overflow-x-auto max-w-full pt-10 pb-6 px-2 z-10 scrollbar-none">
+                <div className="min-w-[650px] sm:min-w-full relative">
+                    {/* Glowing Rail Track Line */}
+                    <div className="h-3.5 bg-slate-800/90 rounded-full w-full relative border border-slate-700/80 overflow-visible">
+                        {/* Active Progress Fill Line */}
+                        <div
+                            className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-500 rounded-full transition-all duration-700 shadow-[0_0_12px_rgba(16,185,129,0.5)]"
+                            style={{ width: `${(currentStage / (stages.length - 1)) * 100}%` }}
+                        ></div>
 
-                    {/* GSAP ANIMATED HIGH-TECH BULLET POD 🚄 */}
-                    <div
-                        ref={trainRef}
-                        className="absolute -top-6.5 -translate-x-1/2 z-30 transition-all cursor-pointer"
-                        style={{ left: '0%' }}
-                    >
-                        <div className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 text-slate-950 px-3 py-1.5 rounded-2xl shadow-[0_0_20px_rgba(52,211,153,0.8)] border-2 border-white flex items-center gap-1.5 font-black text-xs">
-                            <Train size={18} className="text-slate-950" />
-                            <span className="hidden sm:inline text-[11px] font-black uppercase tracking-wider">Life Cycle Pod 🚄</span>
+                        {/* GSAP ANIMATED HIGH-TECH BULLET POD 🚄 */}
+                        <div
+                            ref={trainRef}
+                            className="absolute -top-6.5 -translate-x-1/2 z-30 transition-all cursor-pointer"
+                            style={{ left: '0%' }}
+                        >
+                            <div className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 text-slate-950 px-3 py-1.5 rounded-2xl shadow-[0_0_20px_rgba(52,211,153,0.8)] border-2 border-white flex items-center gap-1.5 font-black text-xs">
+                                <Train size={18} className="text-slate-950" />
+                                <span className="hidden sm:inline text-[11px] font-black uppercase tracking-wider">Life Cycle Pod 🚄</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {/* 10 STAGES CIRCLES ALONG THE TRACK */}
-                <div className="flex justify-between items-center relative -top-3 z-20 px-1">
-                    {stages.map((st, idx) => {
-                        const isReached = idx <= currentStage;
-                        const isCurrent = idx === currentStage;
-                        const IconComp = st.icon;
+                    {/* 10 STAGES CIRCLES ALONG THE TRACK */}
+                    <div className="flex justify-between items-center relative -top-3 z-20 px-1">
+                        {stages.map((st, idx) => {
+                            const isReached = idx <= currentStage;
+                            const isCurrent = idx === currentStage;
+                            const IconComp = st.icon;
 
-                        return (
-                            <button
-                                key={st.num}
-                                onClick={() => {
-                                    setCurrentStage(idx);
-                                    setIsPlaying(false);
-                                }}
-                                className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full font-black text-xs sm:text-sm flex items-center justify-center transition-all duration-300 border-2 ${
-                                    isCurrent
-                                        ? 'bg-emerald-400 text-slate-950 border-white scale-125 shadow-[0_0_18px_rgba(52,211,153,0.8)] ring-4 ring-emerald-500/40'
-                                        : isReached
-                                        ? 'bg-slate-900 text-emerald-400 border-emerald-500 shadow-sm'
-                                        : 'bg-slate-950 text-slate-500 border-slate-700 hover:border-slate-500'
-                                }`}
-                                title={st.title}
-                            >
-                                {isReached ? <IconComp size={16} /> : st.num}
-                            </button>
-                        );
-                    })}
+                            return (
+                                <button
+                                    key={st.num}
+                                    onClick={() => {
+                                        setCurrentStage(idx);
+                                        setIsPlaying(false);
+                                    }}
+                                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full font-black text-xs sm:text-sm flex items-center justify-center transition-all duration-300 border-2 ${
+                                        isCurrent
+                                            ? 'bg-emerald-400 text-slate-950 border-white scale-125 shadow-[0_0_18px_rgba(52,211,153,0.8)] ring-4 ring-emerald-500/40'
+                                            : isReached
+                                            ? 'bg-slate-900 text-emerald-400 border-emerald-500 shadow-sm'
+                                            : 'bg-slate-950 text-slate-500 border-slate-700 hover:border-slate-500'
+                                    }`}
+                                    title={st.title}
+                                >
+                                    {isReached ? <IconComp size={16} /> : st.num}
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
 
             {/* CURRENT ACTIVE STAGE DISPLAY CARD */}
-            <div className="bg-slate-900/90 backdrop-blur-xl border-2 border-emerald-500/80 rounded-3xl p-6 sm:p-8 space-y-4 shadow-2xl relative z-10 transition-all duration-300">
+            <div className="bg-slate-900/90 backdrop-blur-xl border-2 border-emerald-500/80 rounded-3xl p-5 sm:p-8 space-y-4 shadow-2xl relative z-10 transition-all duration-300">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-4">
                     <div className="flex items-center gap-3">
-                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${activeStageObj.color} text-slate-950 flex items-center justify-center font-black text-xl shadow-lg ${activeStageObj.bgGlow}`}>
-                            <ActiveIcon size={24} />
+                        <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br ${activeStageObj.color} text-slate-950 flex items-center justify-center font-black text-xl shadow-lg ${activeStageObj.bgGlow} shrink-0`}>
+                            <ActiveIcon size={22} />
                         </div>
                         <div>
-                            <span className="text-[11px] font-black uppercase tracking-widest text-emerald-400">Stage {activeStageObj.num} of 10</span>
-                            <h3 className="text-xl sm:text-2xl font-black text-white">{activeStageObj.title}</h3>
+                            <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-emerald-400">Stage {activeStageObj.num} of 10</span>
+                            <h3 className="text-lg sm:text-2xl font-black text-white">{activeStageObj.title}</h3>
                         </div>
                     </div>
 
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 w-full sm:w-auto justify-end">
                         <button
                             disabled={currentStage === 0}
                             onClick={() => {
