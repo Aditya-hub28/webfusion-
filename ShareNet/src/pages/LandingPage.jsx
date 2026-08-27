@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useCircularStore } from '../stores/circularStore';
 import CampusBorrowingLifecycleTrack from '../components/trust/CampusBorrowingLifecycleTrack';
+import CampusTrainVerificationTrack from '../components/trust/CampusTrainVerificationTrack';
 import TenStepVerification from '../components/trust/TenStepVerification';
 import {
     Sparkles, Search, ShieldCheck, RefreshCw, Leaf, ArrowRight, Package, Mic,
