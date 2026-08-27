@@ -1,5 +1,13 @@
 import mongoose from "mongoose";
+import dns from "dns";
 import { DB_NAME } from "../constants.js";
+
+// Ensure DNS SRV lookup works reliably on Windows local networks
+try {
+    dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch (e) {
+    // Ignore if not supported
+}
 
 export const connectDB = async () => {
     try {
