@@ -87,194 +87,167 @@ export default function LandingPage() {
 
     return (
         <div className="space-y-16 pb-12">
-            {/* HERO SECTION WITH GSAP ANIMATIONS */}
-            <section className="relative overflow-hidden pt-12 pb-20 bg-gradient-to-b from-slate-950 via-slate-900 to-indigo-950 text-white rounded-b-[48px] shadow-2xl border-b border-indigo-900/50">
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-emerald-500/10 blur-[120px] pointer-events-none rounded-full"></div>
-                <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-indigo-500/10 blur-[100px] pointer-events-none rounded-full"></div>
+            {/* HERO SECTION WITH ULTRA GLASSMORPHISM & OBSIDIAN GLOW */}
+            <section className="relative overflow-hidden pt-12 pb-20 bg-slate-950/95 backdrop-blur-3xl text-white rounded-b-[48px] shadow-[0_25px_60px_rgba(0,0,0,0.85)] border-b border-white/10">
+                {/* Translucent Neon Ambient Orbs */}
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-emerald-500/20 blur-[130px] pointer-events-none rounded-full"></div>
+                <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-teal-400/15 blur-[120px] pointer-events-none rounded-full"></div>
+                <div className="absolute bottom-10 left-10 w-[350px] h-[350px] bg-emerald-400/10 blur-[100px] pointer-events-none rounded-full"></div>
 
                 <div ref={heroRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8 text-center">
                     {/* Badge */}
                     <div>
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-700 text-emerald-400 text-xs font-black uppercase tracking-widest shadow-lg">
-                            <Sparkles size={16} /> Campus Circular Ecosystem • GSAP Animated Engine
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-xl border border-emerald-500/40 text-emerald-400 text-xs font-black uppercase tracking-widest shadow-xl shadow-emerald-950/40">
+                            <Sparkles size={16} /> Campus Circular Ecosystem • Glassmorphism Engine
                         </div>
                     </div>
 
                     {/* Headline */}
-                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white max-w-5xl mx-auto leading-tight">
-                        WHY BUY WHAT SOMEONE NEARBY ALREADY HAS?
+                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight max-w-4xl mx-auto">
+                        Borrow Anything On Campus.{' '}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500">
+                            Save Money. Zero Waste.
+                        </span>
                     </h1>
 
-                    {/* Subtitle */}
-                    <p className="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto font-medium">
-                        The #1 Peer-to-Peer Campus Resource Sharing Platform. Borrow 50+ verified cameras, laptops, projectors, sports kits & lab tools from trusted peers.
+                    <p className="text-sm sm:text-lg text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
+                        Peer-to-peer resource sharing for students. AI-powered intent matching, instant escrow security deposit holds, and 100% verified campus handovers.
                     </p>
 
-                    {/* HERO AI Search Box */}
-                    <form onSubmit={handleSearch} className="max-w-3xl mx-auto">
-                        <div className="bg-slate-900/90 backdrop-blur-xl p-3 rounded-3xl border-2 border-emerald-500/80 shadow-2xl flex flex-col sm:flex-row gap-2">
-                            <div className="flex-1 flex items-center px-4 gap-3">
-                                <Sparkles className="text-emerald-400 shrink-0" size={22} />
+                    {/* FROSTED GLASS SEARCH CAPSULE */}
+                    <form onSubmit={handleSearch} className="max-w-3xl mx-auto relative group">
+                        <div className="bg-white/10 backdrop-blur-2xl p-2 sm:p-2.5 rounded-3xl sm:rounded-full border-2 border-white/20 shadow-2xl hover:border-emerald-400/60 transition-all flex flex-col sm:flex-row items-center gap-2">
+                            <div className="flex items-center gap-3 pl-4 flex-1 w-full">
+                                <Search className="text-emerald-400 shrink-0" size={22} />
                                 <input
                                     type="text"
                                     value={prompt}
                                     onChange={(e) => setPrompt(e.target.value)}
-                                    placeholder="Tell us what you need... e.g. 'I need a scientific calculator for exam'"
-                                    className="w-full bg-transparent text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none py-2 font-semibold"
+                                    placeholder='Ask AI e.g. "I need a 4K DSLR camera for a club shoot under ₹250/day"...'
+                                    className="w-full bg-transparent text-white placeholder-slate-400 text-xs sm:text-sm font-medium focus:outline-none"
                                 />
+                            </div>
+
+                            <div className="flex items-center gap-2 w-full sm:w-auto shrink-0 justify-end">
                                 <button
                                     type="button"
                                     onClick={handleMicClick}
-                                    className="text-slate-400 hover:text-emerald-400 p-1.5 transition-colors"
-                                    title="Click to use voice input"
+                                    className="p-3 bg-white/10 hover:bg-white/20 text-emerald-400 rounded-full transition-colors backdrop-blur-md"
+                                    title="Voice Input Search"
                                 >
-                                    <Mic size={20} />
+                                    <Mic size={18} />
                                 </button>
+                                <Button type="submit" className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 font-black text-xs sm:text-sm px-6 py-3 rounded-full shadow-lg shadow-emerald-500/25">
+                                    AI Match Gear →
+                                </Button>
                             </div>
-                            <Button type="submit" className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs sm:text-sm px-7 py-3.5 rounded-2xl shadow-lg shrink-0 flex items-center justify-center gap-2">
-                                <Sparkles size={16} /> Discover with AI
-                            </Button>
                         </div>
                     </form>
 
-                    {/* Quick Search Prompts */}
-                    <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto text-xs pt-2">
-                        <span className="text-slate-400 font-extrabold self-center mr-1">Popular Campus Needs:</span>
-                        <button
-                            onClick={() => handlePresetPrompt('I need to shoot a club reel tomorrow under ₹300')}
-                            className="bg-slate-800/90 hover:bg-emerald-950 text-emerald-300 border border-slate-700 px-3 py-1.5 rounded-xl transition-all font-bold"
-                        >
-                            🎬 "Shoot a club reel"
+                    {/* Prompt Presets Pills */}
+                    <div className="flex flex-wrap justify-center items-center gap-2 text-xs">
+                        <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Popular Campus Searches:</span>
+                        <button onClick={() => handlePresetPrompt('DSLR Camera for film shoot')} className="px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-slate-200 hover:bg-white/20 hover:text-emerald-400 transition-all font-semibold">
+                            📷 DSLR Camera for film shoot
                         </button>
-                        <button
-                            onClick={() => handlePresetPrompt('I need a podcast microphone setup')}
-                            className="bg-slate-800/90 hover:bg-emerald-950 text-teal-300 border border-slate-700 px-3 py-1.5 rounded-all font-bold"
-                        >
-                            🎙️ "Podcast setup"
+                        <button onClick={() => handlePresetPrompt('Full HD Projector for presentation')} className="px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-slate-200 hover:bg-white/20 hover:text-emerald-400 transition-all font-semibold">
+                            📊 Projector for presentation
                         </button>
-                        <button
-                            onClick={() => handlePresetPrompt('I need a projector for a presentation tomorrow')}
-                            className="bg-slate-800/90 hover:bg-emerald-950 text-indigo-300 border border-slate-700 px-3 py-1.5 rounded-all font-bold"
-                        >
-                            📊 "Projector for presentation"
+                        <button onClick={() => handlePresetPrompt('Cricket bat kit for tournament')} className="px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-slate-200 hover:bg-white/20 hover:text-emerald-400 transition-all font-semibold">
+                            🏏 Cricket Bat Kit
                         </button>
-                        <button
-                            onClick={() => handlePresetPrompt('I need a cricket bat kit for a weekend match')}
-                            className="bg-slate-800/90 hover:bg-emerald-950 text-amber-300 border border-slate-700 px-3 py-1.5 rounded-all font-bold"
-                        >
-                            🏏 "Cricket bat match kit"
-                        </button>
-                        <button
-                            onClick={() => handlePresetPrompt('I need camping tent equipment for outdoor trekking')}
-                            className="bg-slate-800/90 hover:bg-emerald-950 text-purple-300 border border-slate-700 px-3 py-1.5 rounded-all font-bold"
-                        >
-                            ⛺ "Camping tent & trekking"
+                        <button onClick={() => handlePresetPrompt('4-Person Camping Tent for trek')} className="px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-slate-200 hover:bg-white/20 hover:text-emerald-400 transition-all font-semibold">
+                            ⛺ 4-Person Camping Tent
                         </button>
                     </div>
 
-                    {/* Secondary Action CTAs */}
-                    <div className="flex justify-center gap-4 pt-4">
-                        <Link to="/discover">
-                            <Button className="bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-xs sm:text-sm px-6 py-3 rounded-2xl shadow-md">
-                                <Package size={16} className="mr-1.5 text-emerald-600" /> Explore 50+ Listings
-                            </Button>
-                        </Link>
-                        <Link to="/my-lending">
-                            <Button className="bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs sm:text-sm px-6 py-3 rounded-2xl shadow-md">
-                                <Film size={16} className="mr-1.5" /> Equipment Kits Studio
-                            </Button>
-                        </Link>
-                    </div>
-
-                    {/* Impact Stats Strip with GSAP Stagger */}
-                    <div ref={statsRef} className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-5xl mx-auto text-xs">
-                        <div className="bg-slate-900/90 backdrop-blur-md p-4 rounded-2xl border border-slate-800 space-y-1">
-                            <div className="font-black text-emerald-400 text-2xl">₹48,250</div>
-                            <div className="text-slate-400 text-[11px] font-bold uppercase">Est. Student Money Saved</div>
+                    {/* FROSTED GLASS STATS TICKER */}
+                    <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 max-w-4xl mx-auto">
+                        <div className="bg-white/10 backdrop-blur-2xl p-4 rounded-2xl border border-white/15 text-center shadow-lg">
+                            <div className="text-2xl sm:text-3xl font-black text-emerald-400">₹48,250+</div>
+                            <div className="text-[11px] text-slate-300 font-semibold mt-0.5">Student Money Saved</div>
                         </div>
-                        <div className="bg-slate-900/90 backdrop-blur-md p-4 rounded-2xl border border-slate-800 space-y-1">
-                            <div className="font-black text-white text-2xl">50+</div>
-                            <div className="text-slate-400 text-[11px] font-bold uppercase">Available Campus Items</div>
+                        <div className="bg-white/10 backdrop-blur-2xl p-4 rounded-2xl border border-white/15 text-center shadow-lg">
+                            <div className="text-2xl sm:text-3xl font-black text-white">50+</div>
+                            <div className="text-[11px] text-slate-300 font-semibold mt-0.5">Verified Listings</div>
                         </div>
-                        <div className="bg-slate-900/90 backdrop-blur-md p-4 rounded-2xl border border-slate-800 space-y-1">
-                            <div className="font-black text-indigo-300 text-2xl">94.8%</div>
-                            <div className="text-slate-400 text-[11px] font-bold uppercase">On-Time Return Rate</div>
+                        <div className="bg-white/10 backdrop-blur-2xl p-4 rounded-2xl border border-white/15 text-center shadow-lg">
+                            <div className="text-2xl sm:text-3xl font-black text-emerald-400">3,920</div>
+                            <div className="text-[11px] text-slate-300 font-semibold mt-0.5">Successful Exchanges</div>
                         </div>
-                        <div className="bg-slate-900/90 backdrop-blur-md p-4 rounded-2xl border border-slate-800 space-y-1">
-                            <div className="font-black text-amber-400 text-2xl">317 kg</div>
-                            <div className="text-slate-400 text-[11px] font-bold uppercase">Est. Waste Avoided</div>
+                        <div className="bg-white/10 backdrop-blur-2xl p-4 rounded-2xl border border-white/15 text-center shadow-lg">
+                            <div className="text-2xl sm:text-3xl font-black text-white">317 kg</div>
+                            <div className="text-[11px] text-slate-300 font-semibold mt-0.5">E-Waste Avoided</div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* CAMPUS BORROWING LIFE CYCLE BULLET TRAIN RAIL TRACK 🚄 */}
+            {/* 10-STAGE BORROWING LIFE CYCLE EXPRESS (GSAP BULLET POD RAIL TRACK) */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <CampusBorrowingLifecycleTrack />
             </section>
 
-            {/* 10-STEP SAFETY & VERIFICATION ARCHITECTURE MATRIX */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* 10-STEP SAFETY & TRUST ARCHITECTURE (GSAP BULLET TRAIN RAIL TRACK) */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <CampusTrainVerificationTrack />
                 <TenStepVerification />
             </section>
 
-            {/* 5 FEATURED CAMPUS CATEGORIES SHOWCASE */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            {/* FEATURED CATEGORIES SHOWCASE WITH 5 photos PREVIEW */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div>
-                        <span className="text-xs font-bold uppercase tracking-widest text-indigo-600">Categorized Catalog</span>
+                    <div className="space-y-1">
+                        <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">Browse By Category</span>
                         <h2 className="text-2xl sm:text-3xl font-black text-slate-900">Explore 5 Campus Categories</h2>
                     </div>
-                    <Link to="/discover">
-                        <Button className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl">
-                            View All 50 Items →
-                        </Button>
-                    </Link>
+
+                    {/* Category Filter Tabs */}
+                    <div className="flex gap-1.5 overflow-x-auto pb-1 text-xs">
+                        {categoriesList.map((cat) => {
+                            const IconComp = categoryIcons[cat];
+                            const isSelected = selectedCategory === cat;
+                            return (
+                                <button
+                                    key={cat}
+                                    onClick={() => setSelectedCategory(cat)}
+                                    className={`px-4 py-2 rounded-2xl font-extrabold flex items-center gap-1.5 transition-all shrink-0 border ${
+                                        isSelected
+                                            ? 'bg-slate-900 text-white border-slate-900 shadow-md scale-105'
+                                            : 'bg-white text-slate-700 hover:bg-slate-100 border-slate-200'
+                                    }`}
+                                >
+                                    <IconComp size={15} className={isSelected ? 'text-emerald-400' : ''} />
+                                    {cat}
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
 
-                {/* Category Tabs */}
-                <div className="flex gap-2 overflow-x-auto pb-2 text-xs">
-                    {categoriesList.map((cat) => {
-                        const Icon = categoryIcons[cat];
-                        return (
-                            <button
-                                key={cat}
-                                onClick={() => setSelectedCategory(cat)}
-                                className={`px-4 py-2.5 rounded-2xl font-extrabold flex items-center gap-2 transition-all shrink-0 border ${
-                                    selectedCategory === cat
-                                        ? 'bg-slate-900 text-white border-slate-900 shadow-md'
-                                        : 'bg-white text-slate-700 hover:bg-slate-100 border-slate-200'
-                                }`}
-                            >
-                                <Icon size={16} /> {cat} ({resources.filter(r => r.category === cat).length})
-                            </button>
-                        );
-                    })}
-                </div>
-
-                {/* Selected Category Preview Grid */}
+                {/* Category Product Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {categoryPreviewItems.map((item) => (
-                        <div key={item.id} className="bg-white border-2 border-slate-200 hover:border-emerald-500 rounded-3xl p-5 shadow-sm hover:shadow-md transition-all space-y-4 flex flex-col justify-between group">
+                        <div key={item.id} className="bg-white border-2 border-slate-200 hover:border-emerald-500 rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all space-y-4 flex flex-col justify-between group">
                             <div className="space-y-3">
-                                <div className="relative h-44 rounded-2xl overflow-hidden bg-slate-100">
+                                <div className="relative h-48 rounded-2xl overflow-hidden bg-slate-100">
                                     <img
                                         src={item.images && item.images[0] ? item.images[0] : 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600'}
                                         alt={item.title}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                     />
-                                    <span className="absolute top-2 left-2 bg-slate-900/80 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full">
+                                    <span className="absolute top-2 left-2 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-white/20">
                                         {item.category}
                                     </span>
-                                    <span className="absolute bottom-2 right-2 bg-slate-950/80 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-slate-700">
-                                        📷 5 Photos
+                                    <span className="absolute bottom-2 right-2 bg-emerald-950/80 backdrop-blur-md text-emerald-400 text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-emerald-700 flex items-center gap-1">
+                                        📷 5 Photos Included
                                     </span>
                                 </div>
 
                                 <div>
-                                    <h4 className="text-sm font-black text-slate-900 line-clamp-1">{item.title}</h4>
-                                    <div className="flex items-center gap-1 text-[11px] text-slate-500 mt-1">
-                                        <MapPin size={13} className="text-slate-400" />
+                                    <h3 className="text-base font-black text-slate-900 line-clamp-2 group-hover:text-emerald-700 transition-colors">{item.title}</h3>
+                                    <div className="flex items-center gap-1 text-xs text-slate-500 mt-1 font-medium">
+                                        <MapPin size={13} className="text-slate-400 shrink-0" />
                                         <span className="truncate">{item.location}</span>
                                     </div>
                                 </div>
@@ -282,12 +255,12 @@ export default function LandingPage() {
 
                             <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
                                 <div>
-                                    <span className="text-xs text-slate-400 block">Daily Fee</span>
-                                    <strong className="text-emerald-700 text-sm font-black">₹{item.dailyCharge}/day</strong>
+                                    <span className="text-[10px] text-slate-400 block font-semibold">Daily Rate</span>
+                                    <strong className="text-emerald-700 text-base font-black">₹{item.dailyCharge}/day</strong>
                                 </div>
-                                <Link to={`/discover`}>
-                                    <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl">
-                                        Borrow Item
+                                <Link to={`/discover?search=${encodeURIComponent(item.title)}`}>
+                                    <Button size="sm" className="bg-slate-900 hover:bg-emerald-600 text-white font-bold text-xs py-2 px-3.5">
+                                        Borrow Gear →
                                     </Button>
                                 </Link>
                             </div>
@@ -296,12 +269,14 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* MULTI-RESOURCE EQUIPMENT KITS STUDIO BANNER */}
+            {/* MULTI-ITEM EQUIPMENT KITS STUDIO BANNER */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="bg-gradient-to-r from-indigo-950 via-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-10 shadow-2xl border-2 border-indigo-500/80 space-y-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                    <div className="space-y-2 max-w-2xl">
+                <div className="bg-gradient-to-r from-slate-950 via-zinc-900 to-slate-950 backdrop-blur-2xl text-white rounded-3xl p-8 sm:p-10 shadow-2xl border-2 border-emerald-500/60 space-y-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 blur-[100px] pointer-events-none rounded-full"></div>
+
+                    <div className="space-y-2 max-w-2xl relative z-10">
                         <span className="text-xs font-black uppercase tracking-widest text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-800 inline-flex items-center gap-1.5">
-                            <Film size={14} /> Multi-Resource Bundles
+                            <Film size={14} /> Multi-Resource Bundles • Glassmorphism Studio
                         </span>
                         <h2 className="text-2xl sm:text-4xl font-black text-white">Equipment Kits Studio</h2>
                         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-medium">
@@ -309,8 +284,8 @@ export default function LandingPage() {
                         </p>
                     </div>
 
-                    <Link to="/my-lending" className="shrink-0">
-                        <Button className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-lg">
+                    <Link to="/my-lending" className="shrink-0 relative z-10">
+                        <Button className="bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 font-black text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-lg shadow-emerald-500/30">
                             Open Equipment Kits Studio →
                         </Button>
                     </Link>

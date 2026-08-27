@@ -4,7 +4,7 @@ import { RefreshCw, Heart, ShieldCheck, Sparkles, Github } from 'lucide-react';
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-slate-950 text-white border-t border-slate-800/80 pt-12 pb-8 mt-16 text-xs relative z-10">
+        <footer className="w-full bg-slate-950/95 backdrop-blur-2xl text-white border-t border-white/10 pt-12 pb-8 mt-16 text-xs relative z-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     {/* Brand Logo & Tagline */}
@@ -35,12 +35,12 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Copyright Strip */}
-                <div className="pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-3 text-slate-500 text-[11px] font-semibold">
+                <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-slate-500 text-[11px] font-semibold">
                     <div>
                         © 2026 Campus Circular Economy Platform. TSEC Webfusion 2.0 Hackathon Project.
                     </div>
                     <div className="flex items-center gap-2 text-slate-400">
-                        <span>Built with React, Tailwind & GSAP</span>
+                        <span>Built with React, Tailwind & Glassmorphism GSAP</span>
                     </div>
                 </div>
             </div>
