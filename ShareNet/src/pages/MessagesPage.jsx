@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, Camera, ShieldCheck, MapPin, Smile, Phone, Video, Search, Shield, Info, Paperclip, MoreVertical } from 'lucide-react';
+import { Send, Camera, ShieldCheck, MapPin, Smile, Phone, Video, Search, Shield, Info, Paperclip, MoreVertical, ChevronLeft } from 'lucide-react';
 import { useCircularStore } from '../stores/circularStore';
 import toast from 'react-hot-toast';
 
@@ -9,6 +9,7 @@ export default function MessagesPage() {
     const [activeContactId, setActiveContactId] = useState('priya');
     const [newMessage, setNewMessage] = useState('');
     const [isTyping, setIsTyping] = useState(false);
+    const [showChatMobile, setShowChatMobile] = useState(false);
     
     // Custom formatted time utility
     const getFormattedTime = () => {
@@ -183,7 +184,7 @@ export default function MessagesPage() {
 
             <div className="bg-white/70 backdrop-blur-xl border border-white/50 rounded-[32px] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col md:flex-row h-[620px]">
                 {/* Conversations Sidebar */}
-                <div className="w-full md:w-80 border-r border-slate-200 bg-slate-50/40 flex flex-col h-full">
+                <div className={`w-full md:w-80 border-r border-slate-200 bg-slate-50/40 flex flex-col h-full ${showChatMobile ? 'hidden md:flex' : 'flex'}`}>
                     <div className="p-4 border-b border-slate-200">
                         <h3 className="text-sm font-black text-slate-800">Exchange Conversations</h3>
                     </div>
@@ -198,6 +199,7 @@ export default function MessagesPage() {
                                     onClick={() => {
                                         setActiveContactId(conv.id);
                                         setNewMessage('');
+                                        setShowChatMobile(true);
                                     }}
                                     className={`rounded-2xl p-3 cursor-pointer transition-all border ${
                                         isSelected
@@ -233,10 +235,18 @@ export default function MessagesPage() {
                 </div>
 
                 {/* Main Chat Panel */}
-                <div className="flex-1 flex flex-col justify-between h-full bg-white/30">
+                <div className={`flex-1 flex flex-col justify-between h-full bg-white/30 ${showChatMobile ? 'flex' : 'hidden md:flex'}`}>
                     {/* Header Context */}
                     <div className="p-4 border-b border-slate-200/50 bg-slate-50/50 flex items-center justify-between">
                         <div className="flex items-center gap-3">
+                            <button
+                                type="button"
+                                onClick={() => setShowChatMobile(false)}
+                                className="md:hidden p-1.5 -ml-1 rounded-xl text-slate-500 hover:bg-slate-200/40 transition-all shrink-0"
+                                title="Back to conversations"
+                            >
+                                <ChevronLeft size={20} />
+                            </button>
                             <div className="w-10 h-10 rounded-xl overflow-hidden bg-slate-100 border flex-shrink-0">
                                 <img src={activeChat.image} alt={activeChat.item} className="w-full h-full object-cover" />
                             </div>
