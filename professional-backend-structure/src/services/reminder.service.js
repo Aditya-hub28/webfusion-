@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Transaction } from "../models/transaction.model.js";
 import { Agreement } from "../models/agreement.model.js";
 import { Notification } from "../models/notification.model.js";
@@ -5,6 +6,10 @@ import { emitNotification } from "../socket.js";
 
 // Check for upcoming returns and overdue items
 export const checkReminders = async () => {
+    if (mongoose.connection.readyState !== 1) {
+        console.log('Skipping reminder check (MongoDB not connected)');
+        return;
+    }
     const now = new Date();
     const oneDayFromNow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
     const threeDaysFromNow = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);

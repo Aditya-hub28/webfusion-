@@ -8,15 +8,19 @@ import { startReminderScheduler } from './services/reminder.service.js';
 dotenv.config({ path: '.env' });
 
 const server = createServer(app);
+const port = process.env.PORT || 8000;
+
+initializeSocket(server);
+server.listen(port, () => console.log(`Server running on port ${port} 🔥`));
 
 connectDB()
     .then(() => {
-        initializeSocket(server);
-        startReminderScheduler();
-        const port = process.env.PORT || 8000;
-        server.listen(port, () => console.log(`Server running on port ${port} 🔥`));
+        try {
+            startReminderScheduler();
+        } catch (e) {
+            console.log('Scheduler error:', e.message);
+        }
     })
     .catch((err) => {
-        console.log('MongoDB connection failed', err);
-        process.exit(1);
+        console.log('MongoDB connection warning:', err.message);
     });
