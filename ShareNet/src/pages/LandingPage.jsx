@@ -3,10 +3,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useCircularStore } from '../stores/circularStore';
 import TenStepVerification from '../components/trust/TenStepVerification';
+import CampusTrainVerificationTrack from '../components/trust/CampusTrainVerificationTrack';
 import {
     Sparkles, Search, ShieldCheck, RefreshCw, Leaf, ArrowRight, Package, Mic,
     Camera, Speaker, Trophy, BookOpen, Tent, Film, CheckCircle2, Star, ChevronDown,
-    MapPin, Check
+    MapPin, Check, Train
 } from 'lucide-react';
 import Button from '../components/ui/Button';
 import toast from 'react-hot-toast';
@@ -207,7 +208,12 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* 10-STEP VERIFICATION ARCHITECTURE COMPONENT */}
+            {/* CAMPUS BULLET TRAIN 🚄 10-STATION VERIFICATION RAIL TRACK */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <CampusTrainVerificationTrack />
+            </section>
+
+            {/* 10-STEP VERIFICATION ARCHITECTURE DETAILED MATRIX */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <TenStepVerification />
             </section>
