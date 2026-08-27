@@ -1430,13 +1430,138 @@ const initialBorrowings = [
         settled: false,
         disputed: false,
         rated: false
+    },
+    // --- 5 INCOMING BORROW REQUESTS FOR LENDER (PRIYA PATEL) ---
+    {
+        id: 'req-101',
+        resourceId: 'res-1',
+        title: 'Sony Alpha A7 III 4K Mirrorless Camera',
+        image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600',
+        ownerName: 'Priya Patel',
+        ownerAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+        borrowerName: 'Rohan Verma',
+        startDate: '2026-08-28',
+        endDate: '2026-08-30',
+        stage: 'Requested',
+        dailyCharge: 200,
+        platformFee: 20,
+        deposit: 500,
+        handoverConfirmed: false
+    },
+    {
+        id: 'req-102',
+        resourceId: 'res-e2',
+        title: 'Epson Full HD 1080p Portable Projector',
+        image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600',
+        ownerName: 'Priya Patel',
+        ownerAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+        borrowerName: 'Neha Gupta',
+        startDate: '2026-08-28',
+        endDate: '2026-08-29',
+        stage: 'Requested',
+        dailyCharge: 220,
+        platformFee: 20,
+        deposit: 400,
+        handoverConfirmed: false
+    },
+    {
+        id: 'req-103',
+        resourceId: 'res-e6',
+        title: 'Bose QuietComfort 45 Headphones',
+        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600',
+        ownerName: 'Priya Patel',
+        ownerAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+        borrowerName: 'Aniket Roy',
+        startDate: '2026-08-29',
+        endDate: '2026-09-01',
+        stage: 'Requested',
+        dailyCharge: 150,
+        platformFee: 15,
+        deposit: 300,
+        handoverConfirmed: false
+    },
+    {
+        id: 'req-104',
+        resourceId: 'res-c1',
+        title: 'Decathlon 4-Person Waterproof Camping Tent',
+        image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600',
+        ownerName: 'Priya Patel',
+        ownerAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+        borrowerName: 'Sneha Kulkarni',
+        startDate: '2026-08-29',
+        endDate: '2026-08-31',
+        stage: 'Requested',
+        dailyCharge: 250,
+        platformFee: 20,
+        deposit: 500,
+        handoverConfirmed: false
+    },
+    {
+        id: 'req-105',
+        resourceId: 'res-s1',
+        title: 'Cosco Kashmir Willow Cricket Bat Match Kit',
+        image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=600',
+        ownerName: 'Priya Patel',
+        ownerAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+        borrowerName: 'Vikram Singh',
+        startDate: '2026-08-28',
+        endDate: '2026-08-29',
+        stage: 'Requested',
+        dailyCharge: 120,
+        platformFee: 10,
+        deposit: 300,
+        handoverConfirmed: false
     }
 ];
 
-const initialDisputes = [];
+const initialDisputes = [
+    {
+        id: 'DSP-8821',
+        itemTitle: 'MacBook Pro M2 (16GB RAM)',
+        borrower: 'Rohan Verma',
+        owner: 'Priya Patel',
+        type: 'Late Return Penalty',
+        amount: 150,
+        status: 'Under Review (Admin Escrow Hold)',
+        reason: 'Item returned 14 hours past the agreed deadline without prior extension notice.',
+        evidencePhotos: [
+            'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600'
+        ]
+    },
+    {
+        id: 'DSP-8822',
+        itemTitle: 'Sony Alpha A7 III 4K Camera',
+        borrower: 'Siddharth Nair',
+        owner: 'Priya Patel',
+        type: 'Lens Body Scratch & Cosmetic Damage',
+        amount: 350,
+        status: 'Under Review (Admin Escrow Hold)',
+        reason: 'Minor scratch on camera lens body detected during digital return inspection.',
+        evidencePhotos: [
+            'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600'
+        ]
+    },
+    {
+        id: 'DSP-8823',
+        itemTitle: 'Full HD 1080p Portable Projector',
+        borrower: 'Karan Mehta',
+        owner: 'Priya Patel',
+        type: 'Unreturned Asset Escalation (>48h)',
+        amount: 500,
+        status: 'Under Review (Admin Escrow Hold)',
+        reason: 'Borrower overdue by more than 48 hours without answering chat reminders.',
+        evidencePhotos: [
+            'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600'
+        ]
+    }
+];
+
 const initialUsers = [
     { id: 'u1', name: 'Aditya Sharma', dept: 'Computer Science', year: '4th Year', trust: 94, exchanges: 47, status: 'Verified', disputes: 0 },
-    { id: 'u2', name: 'Priya Patel', dept: 'Media & Design', year: '3rd Year', trust: 98, exchanges: 32, status: 'Verified', disputes: 0 }
+    { id: 'u2', name: 'Priya Patel', dept: 'Media & Design', year: '3rd Year', trust: 98, exchanges: 32, status: 'Verified', disputes: 0 },
+    { id: 'u3', name: 'Rohan Verma', dept: 'Electrical Eng.', year: '3rd Year', trust: 89, exchanges: 12, status: 'Verified', disputes: 1 },
+    { id: 'u4', name: 'Neha Gupta', dept: 'Mechanical Eng.', year: '2nd Year', trust: 92, exchanges: 18, status: 'Pending Verification', disputes: 0 },
+    { id: 'u5', name: 'Vikram Singh', dept: 'Civil Eng.', year: '4th Year', trust: 96, exchanges: 25, status: 'Verified', disputes: 0 }
 ];
 
 const initialAuditLogs = [];
@@ -1461,9 +1586,9 @@ export const useCircularStore = create(
             impact: initialImpact,
             savedResourceIds: ['res-1'],
             userTrustScore: 94,
-            lenderEarnings: 1450,
-            borrowerPersonalSavings: 2840,
-            notificationsCount: 3,
+            lenderEarnings: 14500,
+            borrowerPersonalSavings: 28450,
+            notificationsCount: 5,
 
             setPersona: (newPersona) => set({ persona: newPersona }),
 
@@ -1537,10 +1662,37 @@ export const useCircularStore = create(
                 ]
             })),
 
+            createBorrowRequest: (borrowData) => set((state) => {
+                const newBorrowing = {
+                    id: `bor-${Date.now()}`,
+                    ...borrowData,
+                    borrowerName: 'Aditya Sharma',
+                    borrowerAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
+                    stage: 'Requested',
+                    dueTimestamp: Date.now() + 48 * 3600 * 1000,
+                    handoverConfirmed: false,
+                    conditionBefore: null,
+                    conditionAfter: null,
+                    damageReported: false,
+                    damageDeduction: 0,
+                    settled: false,
+                    disputed: false,
+                    rated: false
+                };
+                return {
+                    borrowings: [newBorrowing, ...state.borrowings],
+                    notificationsCount: state.notificationsCount + 1
+                };
+            }),
+
             acceptBorrowRequest: (borrowingId) => set((state) => ({
                 borrowings: state.borrowings.map((b) =>
                     b.id === borrowingId ? { ...b, stage: 'Accepted' } : b
                 )
+            })),
+
+            declineBorrowRequest: (borrowingId) => set((state) => ({
+                borrowings: state.borrowings.filter((b) => b.id !== borrowingId)
             })),
 
             confirmHandover: (borrowingId) => set((state) => ({
@@ -1577,6 +1729,15 @@ export const useCircularStore = create(
                 )
             })),
 
+            raiseAdminDispute: (disputeData) => set((state) => {
+                const newDisp = {
+                    id: `DSP-${Math.floor(1000 + Math.random() * 9000)}`,
+                    status: 'Under Review (Admin Escrow Hold)',
+                    ...disputeData
+                };
+                return { disputes: [newDisp, ...state.disputes] };
+            }),
+
             resetDemoState: () => set({
                 persona: 'borrower',
                 resources: initialResources,
@@ -1588,12 +1749,12 @@ export const useCircularStore = create(
                 impact: initialImpact,
                 savedResourceIds: ['res-1'],
                 userTrustScore: 94,
-                lenderEarnings: 1450,
-                borrowerPersonalSavings: 2840
+                lenderEarnings: 14500,
+                borrowerPersonalSavings: 28450
             })
         }),
         {
-            name: 'campus-circular-v3-storage'
+            name: 'campus-circular-v4-storage'
         }
     )
 );

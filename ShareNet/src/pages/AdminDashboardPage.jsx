@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useCircularStore } from '../stores/circularStore';
 import DisputeInvestigationModal from '../components/admin/DisputeInvestigationModal';
+import RaiseDisputeModal from '../components/admin/RaiseDisputeModal';
 import AdminAuditLog from '../components/admin/AdminAuditLog';
 import MethodologyModal from '../components/impact/MethodologyModal';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
-import { ShieldCheck, Users, Package, AlertTriangle, CheckCircle, Flag, Ban, UserCheck, Clock, DollarSign, HelpCircle, AlertCircle, Layers } from 'lucide-react';
+import { ShieldCheck, Users, Package, AlertTriangle, CheckCircle, Flag, Ban, UserCheck, Clock, DollarSign, HelpCircle, AlertCircle, Layers, Plus } from 'lucide-react';
 import Button from '../components/ui/Button';
 import toast from 'react-hot-toast';
 
@@ -19,11 +20,13 @@ export default function AdminDashboardPage() {
         suspendStudentUser,
         approveResourceListing,
         overrideAdminSettlement,
-        sendOverdueReminder
+        sendOverdueReminder,
+        raiseAdminDispute
     } = useCircularStore();
 
     const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'users' | 'resources' | 'disputes' | 'overdue' | 'audit'
     const [selectedDispute, setSelectedDispute] = useState(null);
+    const [raiseModalOpen, setRaiseModalOpen] = useState(false);
     const [methodologyOpen, setMethodologyOpen] = useState(false);
 
     const pendingUsers = users.filter(u => u.status !== 'Verified');
@@ -69,9 +72,14 @@ export default function AdminDashboardPage() {
                         Student verification, resource moderation, dispute investigation, overdue monitoring, and platform safety analytics.
                     </p>
                 </div>
-                <span className="text-xs font-bold px-3.5 py-1.5 bg-amber-100 text-amber-900 rounded-xl border border-amber-300">
-                    Admin Access: ACTIVE
-                </span>
+                <div className="flex gap-2">
+                    <Button onClick={() => setRaiseModalOpen(true)} className="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold py-2 px-3 rounded-xl shadow-md">
+                        <Plus size={15} className="mr-1" /> Raise Dispute Case
+                    </Button>
+                    <span className="text-xs font-bold px-3.5 py-2 bg-amber-100 text-amber-900 rounded-xl border border-amber-300">
+                        Admin Access: ACTIVE
+                    </span>
+                </div>
             </div>
 
             {/* Navigation Tabs */}
@@ -233,39 +241,20 @@ export default function AdminDashboardPage() {
                             ))}
                         </div>
                     </div>
-
-                    {/* Supply Demand Gaps */}
-                    <div className="bg-slate-900 text-white rounded-3xl p-6 space-y-4">
-                        <h3 className="text-base font-bold text-white flex items-center gap-2">
-                            <Layers size={18} className="text-emerald-400" /> Campus Resource Supply-Demand Gap Analysis
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                            <div className="bg-slate-800 p-4 rounded-2xl border border-slate-700 space-y-1">
-                                <span className="text-[10px] text-amber-400 font-bold uppercase">High Demand / Low Supply</span>
-                                <h4 className="font-bold text-white">DSLR 4K Cameras</h4>
-                                <p className="text-[11px] text-slate-400">Demand: 42 requests/wk vs Supply: 8 items listed.</p>
-                            </div>
-                            <div className="bg-slate-800 p-4 rounded-2xl border border-slate-700 space-y-1">
-                                <span className="text-[10px] text-emerald-400 font-bold uppercase">Balanced Market</span>
-                                <h4 className="font-bold text-white">Fluid Head Tripods</h4>
-                                <p className="text-[11px] text-slate-400">Demand: 19 requests/wk vs Supply: 16 items listed.</p>
-                            </div>
-                            <div className="bg-slate-800 p-4 rounded-2xl border border-slate-700 space-y-1">
-                                <span className="text-[10px] text-blue-400 font-bold uppercase">Surplus Supply</span>
-                                <h4 className="font-bold text-white">Scientific Calculators</h4>
-                                <p className="text-[11px] text-slate-400">Demand: 6 requests/wk vs Supply: 34 items listed.</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             )}
 
             {/* TAB 4: DISPUTE CENTER & INVESTIGATION */}
             {activeTab === 'disputes' && (
                 <div className="space-y-6">
-                    <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                        <AlertTriangle size={18} className="text-amber-500" /> Active Dispute Moderation Queue & Settlement Override
-                    </h3>
+                    <div className="flex justify-between items-center">
+                        <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                            <AlertTriangle size={18} className="text-amber-500" /> Active Dispute Moderation Queue & Settlement Override
+                        </h3>
+                        <Button onClick={() => setRaiseModalOpen(true)} className="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold py-2 px-3 rounded-xl shadow-md">
+                            <Plus size={15} className="mr-1" /> Raise New Dispute
+                        </Button>
+                    </div>
 
                     <div className="space-y-4">
                         {disputes.map((d) => (
@@ -273,6 +262,9 @@ export default function AdminDashboardPage() {
                                 <div className="flex justify-between items-center border-b border-slate-100 pb-3">
                                     <div className="flex items-center gap-2">
                                         <span className="text-xs font-bold text-slate-900">{d.id}</span>
+                                        <span className="text-xs font-extrabold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded border border-amber-200">
+                                            {d.type}
+                                        </span>
                                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${d.status.includes('Review') ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}`}>
                                             {d.status}
                                         </span>
@@ -323,11 +315,6 @@ export default function AdminDashboardPage() {
                             </div>
                         ))}
                     </div>
-
-                    <div className="bg-amber-50 border border-amber-200 rounded-3xl p-6 space-y-2 text-xs text-amber-900">
-                        <h4 className="font-bold flex items-center gap-1.5"><AlertCircle size={16} className="text-amber-600" /> Trust & Safety Risk Alert Feed</h4>
-                        <p className="text-[11px] text-amber-800">User Rohan Verma (Trust Score: 89) logged 1 late return in the last 14 days. Monitored automatically.</p>
-                    </div>
                 </div>
             )}
 
@@ -342,6 +329,12 @@ export default function AdminDashboardPage() {
                 onClose={() => setSelectedDispute(null)}
                 dispute={selectedDispute}
                 onResolveOverride={overrideAdminSettlement}
+            />
+
+            <RaiseDisputeModal
+                isOpen={raiseModalOpen}
+                onClose={() => setRaiseModalOpen(false)}
+                onRaiseDispute={raiseAdminDispute}
             />
 
             <MethodologyModal
