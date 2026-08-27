@@ -10,6 +10,8 @@ dotenv.config(
 
 )
 
+import path from 'path';
+
 // Configuration
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -19,29 +21,47 @@ cloudinary.config({
 
 const uploadOnCloudinary = async (localFilePath) => {
     try {
-        if (!localFilePath) return new ApiError(
-            401,
-            "localfilePath not found"
-        )
+        if (!localFilePath) return null;
 
-        const response = await cloudinary.uploader.upload(localFilePath, {
-            resource_type: 'auto'
-        })
-        //file successfully uploaded
-        // console.log('file is uploaded on cloudinary', response.url);
-        fs.unlinkSync(localFilePath) 
+        // Check if Cloudinary credentials are fully configured
+        const isCloudinaryConfigured = process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET;
 
-        return response;
+        if (isCloudinaryConfigured) {
+            try {
+                const response = await cloudinary.uploader.upload(localFilePath, {
+                    resource_type: 'auto'
+                });
+                if (fs.existsSync(localFilePath)) {
+                    fs.unlinkSync(localFilePath);
+                }
+                return response;
+            } catch (err) {
+                console.warn("Cloudinary upload failed, falling back to local storage:", err.message);
+            }
+        }
+
+        // Fallback: serve locally via static file server
+        const filename = path.basename(localFilePath);
+        const serverPort = process.env.PORT || 8000;
+        const localUrl = `http://localhost:${serverPort}/temp/${filename}`;
+
+        return {
+            url: localUrl,
+            secure_url: localUrl,
+            public_id: filename,
+            isLocal: true
+        };
 
     } catch (error) {
-        console.error("Cloudinary upload error:", error);
-        if (localFilePath && fs.existsSync(localFilePath)) {
-            fs.unlinkSync(localFilePath);
-        }
-        throw new ApiError(
-            500,
-            `Cloudinary error: ${error.message || error}`
-        )
+        console.error("Upload handler error:", error);
+        const filename = path.basename(localFilePath);
+        const serverPort = process.env.PORT || 8000;
+        return {
+            url: `http://localhost:${serverPort}/temp/${filename}`,
+            secure_url: `http://localhost:${serverPort}/temp/${filename}`,
+            public_id: filename,
+            isLocal: true
+        };
     }
 }
 

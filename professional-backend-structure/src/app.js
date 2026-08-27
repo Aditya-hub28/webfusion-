@@ -32,6 +32,7 @@ import lostFoundRoutes from "./routes/lostFound.route.js"
 import claimChatRoutes from "./routes/claimChat.route.js"
 import wantedItemRoutes from "./routes/wantedItem.route.js"
 import offerChatRoutes from "./routes/offerChat.route.js"
+import uploadRoutes from "./routes/upload.route.js"
 
 // Routes declaration
 app.use("/api/v1/users", userRoutes)
@@ -44,6 +45,7 @@ app.use("/api/v1/lost-found", lostFoundRoutes)
 app.use("/api/v1/claim-chats", claimChatRoutes)
 app.use("/api/v1/wanted-items", wantedItemRoutes)
 app.use('/api/v1/offer-chats', offerChatRoutes)
+app.use('/api/v1/upload', uploadRoutes)
 
 // Error handling middleware
 app.use((err, req, res, next) => {
