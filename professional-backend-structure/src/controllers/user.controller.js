@@ -371,11 +371,17 @@ const getColleges = asyncHandler(async (req, res) => {
     );
 });
 
+import mongoose from 'mongoose';
+
 const sendOTP = asyncHandler(async (req, res) => {
     const { email } = req.body;
 
     if (!email) {
         throw new ApiError(400, "Email is required");
+    }
+
+    if (mongoose.connection.readyState !== 1) {
+        throw new ApiError(503, "Database offline. Please whitelist your IP in MongoDB Atlas (Network Access -> Allow Access From Anywhere).");
     }
 
     if (!isValidCollegeEmail(email)) {
