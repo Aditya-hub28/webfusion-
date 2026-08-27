@@ -3,132 +3,130 @@
 export const parseUserRequirement = (promptText) => {
     const query = (promptText || '').toLowerCase().trim();
 
-    let purpose = 'General Campus Borrowing';
-    let requiredResources = ['General Campus Equipment'];
-    let estimatedBudget = 'Flexible';
+    let purpose = 'General Campus Equipment Discovery';
+    let requiredResources = ['Campus Equipment'];
+    let estimatedBudget = 'Flexible Budget';
     let date = 'Tomorrow';
+    let bundleKit = null;
 
-    let bundleKit = {
-        name: 'Complete Reel Production Kit',
-        tagline: 'All-in-one setup: Camera + Fluid Head Tripod + Dual Wireless Mics + Video Light',
-        totalItemsCount: 4,
-        itemsIncluded: [
-            'Sony Alpha A7 III 4K Camera',
-            'Heavy Duty Fluid Head Tripod',
-            'Rode Wireless GO II Dual Mics',
-            'Godox SL-60W LED Video Light'
-        ],
-        dailyCharge: 280,
-        deposit: 500,
-        platformFee: 20,
-        matchScore: 96
-    };
-
-    if (query.includes('reel') || query.includes('video') || query.includes('film') || query.includes('shoot')) {
+    if (query.includes('reel') || query.includes('video') || query.includes('camera') || query.includes('shoot') || query.includes('film')) {
         purpose = 'Video Production & Reel Creation';
-        requiredResources = [
-            'Sony Alpha A7 III 4K Camera',
-            'Heavy Duty Fluid Head Tripod',
-            'Rode Wireless GO II Dual Mics',
-            'Godox SL-60W LED Video Light'
-        ];
+        requiredResources = ['4K Camera', 'Fluid Head Tripod', 'Wireless Mics', 'LED Video Light'];
         estimatedBudget = query.includes('300') ? 'Under ₹300/day' : '₹200 - ₹400/day';
-    } else if (query.includes('podcast') || query.includes('audio') || query.includes('recording') || query.includes('interview')) {
-        purpose = 'Podcast & Audio Recording';
-        requiredResources = [
-            'Shure SM7B Studio Podcast Mic',
-            'Focusrite Solo Audio Interface',
-            'Audio-Technica Studio Headphones',
-            'Ring Light for Video Podcast'
-        ];
-        estimatedBudget = 'Under ₹220/day';
         bundleKit = {
-            name: 'Complete Studio Podcast Suite',
-            tagline: 'Shure Studio Mic + Audio Interface + Studio Headphones + Ring Light',
+            name: 'Complete Reel Production Kit',
+            tagline: 'Camera + Fluid Head Tripod + Dual Wireless Mics + Video Light',
             totalItemsCount: 4,
             itemsIncluded: [
-                'Shure SM7B Studio Podcast Mic',
-                'Focusrite Solo Audio Interface',
-                'Audio-Technica Studio Headphones',
-                'Ring Light for Video Podcast'
+                'Sony Alpha A7 III 4K Camera',
+                'Heavy Duty Fluid Head Tripod',
+                'Boya BY-M1 Wireless Mics',
+                'Godox SL-60W LED Video Light'
             ],
-            dailyCharge: 220,
-            deposit: 400,
+            dailyCharge: 280,
+            deposit: 500,
             platformFee: 20,
-            matchScore: 95
+            matchScore: 98
         };
-    } else if (query.includes('presentation') || query.includes('slides') || query.includes('projector') || query.includes('seminar')) {
-        purpose = 'Academic Presentation & Seminar';
-        requiredResources = [
-            'Full HD 1080p Portable Projector',
-            'MacBook USB-C Multiport HDMI Adapter',
-            'Wireless Presenter Clicker',
-            'Bluetooth Speaker System'
-        ];
+    } else if (query.includes('podcast') || query.includes('mic') || query.includes('audio') || query.includes('recording') || query.includes('interview')) {
+        purpose = 'Podcast & Audio Recording Studio';
+        requiredResources = ['Studio Mic', 'Audio Mixer', 'ANC Headphones'];
         estimatedBudget = 'Under ₹250/day';
         bundleKit = {
-            name: 'Complete Seminar & Presentation Suite',
-            tagline: 'Projector + USB-C Adapter + Wireless Clicker + Speaker',
-            totalItemsCount: 4,
+            name: 'Podcast Studio Master Kit',
+            tagline: 'Boya Lavalier Mics + Soundcraft 8-Ch Mixer + Bose QC45 Headphones',
+            totalItemsCount: 3,
             itemsIncluded: [
-                'Full HD 1080p Portable Projector',
-                'MacBook USB-C Multiport HDMI Adapter',
-                'Wireless Presenter Clicker',
-                'Bluetooth Speaker System'
+                'Boya BY-M1 Lavalier Mics',
+                'Soundcraft 8-Channel USB Audio Mixer',
+                'Bose QuietComfort 45 Headphones'
             ],
             dailyCharge: 220,
             deposit: 400,
             platformFee: 20,
-            matchScore: 95
+            matchScore: 97
         };
-    } else if (query.includes('cricket') || query.includes('sport') || query.includes('match') || query.includes('football')) {
-        purpose = 'Campus Sports & Recreation';
-        requiredResources = [
-            'Kashmir Willow Cricket Bat Kit',
-            'Leather Cricket Balls (Pack of 3)',
-            'Wooden Stumps with Bails',
-            'Protective Leg Guard Pads'
-        ];
-        estimatedBudget = 'Under ₹150/day';
-        bundleKit = {
-            name: 'Complete Cricket Match Kit',
-            tagline: 'Cricket Bat + 3x Leather Balls + Stumps + Leg Guards',
-            totalItemsCount: 4,
-            itemsIncluded: [
-                'Kashmir Willow Cricket Bat Kit',
-                'Leather Cricket Balls (Pack of 3)',
-                'Wooden Stumps with Bails',
-                'Protective Leg Guard Pads'
-            ],
-            dailyCharge: 130,
-            deposit: 250,
-            platformFee: 10,
-            matchScore: 94
-        };
-    } else if (query.includes('camping') || query.includes('tent') || query.includes('outdoor')) {
-        purpose = 'Outdoor Camping & Trekking';
-        requiredResources = [
-            '4-Person Waterproof Camping Tent',
-            'Thermal Sleeping Bag (-5C)',
-            'Portable Camping Gas Stove',
-            'High Power LED Headlamp'
-        ];
+    } else if (query.includes('presentation') || query.includes('projector') || query.includes('slides') || query.includes('seminar') || query.includes('clicker')) {
+        purpose = 'Academic Presentation & Event AV';
+        requiredResources = ['Full HD Projector', '100" Screen', 'Party Speaker', 'Wireless Clicker'];
         estimatedBudget = 'Under ₹350/day';
         bundleKit = {
-            name: 'Complete Outdoor Camping Kit',
-            tagline: 'Waterproof Tent + Sleeping Bag + Stove + Headlamp',
+            name: 'Hackathon Presentation & AV Kit',
+            tagline: 'Epson Projector + 100" Screen + JBL Speaker + Clicker',
             totalItemsCount: 4,
             itemsIncluded: [
-                '4-Person Waterproof Camping Tent',
-                'Thermal Sleeping Bag (-5C)',
-                'Portable Camping Gas Stove',
-                'High Power LED Headlamp'
+                'Epson Full HD 1080p Projector',
+                '100-Inch Tripod Screen',
+                'JBL PartyBox 160W Speaker',
+                'Wireless Presentation Clicker'
             ],
-            dailyCharge: 300,
+            dailyCharge: 310,
             deposit: 600,
             platformFee: 20,
             matchScore: 96
         };
+    } else if (query.includes('cricket') || query.includes('bat') || query.includes('sports') || query.includes('match') || query.includes('football') || query.includes('racket')) {
+        purpose = 'Campus Sports & Match Equipment';
+        requiredResources = ['Willow Cricket Bat', 'Leather Balls', 'Stumps & Pads'];
+        estimatedBudget = 'Under ₹150/day';
+        bundleKit = {
+            name: 'Tournament Cricket Team Match Kit',
+            tagline: 'Kashmir Willow Bat + Leather Balls + Stumps + Protective Pads',
+            totalItemsCount: 4,
+            itemsIncluded: [
+                'Cosco Kashmir Willow Cricket Bat',
+                '3x Match Leather Balls',
+                'Wooden Stumps with Bails',
+                'Protective Leg Guard Pads'
+            ],
+            dailyCharge: 120,
+            deposit: 300,
+            platformFee: 10,
+            matchScore: 96
+        };
+    } else if (query.includes('camping') || query.includes('tent') || query.includes('outdoor') || query.includes('trekking') || query.includes('sleeping bag')) {
+        purpose = 'Outdoor Camping & Trekking Expedition';
+        requiredResources = ['4-Person Tent', 'Sleeping Bag', '60L Backpack', 'Gas Stove', 'Lantern'];
+        estimatedBudget = 'Under ₹300/day';
+        bundleKit = {
+            name: 'Wilderness Camping Trek Kit',
+            tagline: '4-Person Tent + Sleeping Bag + 60L Backpack + Stove + Lantern',
+            totalItemsCount: 5,
+            itemsIncluded: [
+                'Decathlon 4-Person Camping Tent',
+                'Wildcraft Sleeping Bag (-5°C)',
+                'Quechua 60L Backpack',
+                'Coleman BBQ Grill',
+                '1000LM Camping Lantern'
+            ],
+            dailyCharge: 250,
+            deposit: 500,
+            platformFee: 20,
+            matchScore: 98
+        };
+    } else if (query.includes('robotics') || query.includes('arduino') || query.includes('raspberry') || query.includes('soldering') || query.includes('caliper') || query.includes('lab') || query.includes('calculator')) {
+        purpose = 'Engineering & Academic Prototyping';
+        requiredResources = ['Arduino Kit', 'Raspberry Pi 4', 'Soldering Station', 'Digital Caliper'];
+        estimatedBudget = 'Under ₹200/day';
+        bundleKit = {
+            name: 'Robotics & IoT Prototyping Kit',
+            tagline: 'Arduino Uno + Raspberry Pi 4 + Soldering Station + Vernier Caliper',
+            totalItemsCount: 4,
+            itemsIncluded: [
+                'Arduino Uno R3 Starter Kit',
+                'Raspberry Pi 4 Model B (8GB)',
+                'Soldering Iron Station Kit',
+                'Digital Vernier Caliper'
+            ],
+            dailyCharge: 140,
+            deposit: 300,
+            platformFee: 10,
+            matchScore: 97
+        };
+    } else {
+        purpose = `Custom Search for "${promptText}"`;
+        requiredResources = [promptText];
+        estimatedBudget = 'Flexible Market Rate';
     }
 
     return {

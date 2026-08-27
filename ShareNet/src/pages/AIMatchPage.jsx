@@ -7,7 +7,7 @@ import ScoreExplanationModal from '../components/ui/ScoreExplanationModal';
 import ProductImageGallery from '../components/ui/ProductImageGallery';
 import Modal from '../components/ui/Modal';
 import Button from '../components/ui/Button';
-import { Sparkles, CheckCircle2, ShieldCheck, MapPin, ArrowRight, Layers, HelpCircle, Package, Mic, Search } from 'lucide-react';
+import { Sparkles, CheckCircle2, ShieldCheck, MapPin, ArrowRight, Layers, HelpCircle, Package, Mic, Search, Star, Filter } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function AIMatchPage() {
@@ -50,10 +50,10 @@ export default function AIMatchPage() {
     };
 
     const handleMicClick = () => {
-        const voicePrompt = 'I need to shoot a club reel tomorrow under ₹300';
+        const voicePrompt = 'I need a Casio calculator for engineering exam tomorrow';
         setInputPrompt(voicePrompt);
         handleExecuteSearch(voicePrompt);
-        toast.success('Voice input captured!');
+        toast.success('Voice search prompt filled!');
     };
 
     if (!parsed) return null;
@@ -89,25 +89,36 @@ export default function AIMatchPage() {
         }, 1500);
     };
 
+    const quickPrompts = [
+        { label: '🎬 Reel Shoot', prompt: 'I need to shoot a club reel tomorrow under ₹300' },
+        { label: '🎙️ Podcast Setup', prompt: 'I need a podcast microphone setup' },
+        { label: '📊 Projector', prompt: 'I need a projector for a presentation tomorrow' },
+        { label: '🏏 Cricket Kit', prompt: 'I need a cricket bat kit for a weekend match' },
+        { label: '⛺ Camping Tent', prompt: 'I need camping tent equipment for outdoor trekking' },
+        { label: '📐 Calculator', prompt: 'I need a scientific calculator for exam tomorrow' },
+        { label: '💻 Laptop', prompt: 'I need a MacBook or laptop for coding' },
+        { label: '🔬 Arduino Kit', prompt: 'I need an Arduino or Raspberry Pi starter kit' }
+    ];
+
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
             {/* Top Interactive AI Search Container */}
-            <div className="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-indigo-900/50 space-y-6">
+            <div className="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-indigo-900/50 space-y-6 relative overflow-hidden">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                    <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-widest">
+                    <div className="flex items-center gap-2 text-emerald-400 text-xs font-black uppercase tracking-widest bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-800">
                         <Sparkles size={16} /> AI Need-Based Discovery Engine
                     </div>
                     <span className="text-xs font-bold text-slate-300 bg-slate-800/80 px-3 py-1 rounded-full border border-slate-700">
-                        Smart Entity Extraction: Active
+                        Keyword Entity Extraction: Active (50 Listings)
                     </span>
                 </div>
 
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
+                    <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                         Tell us what you need...
                     </h1>
-                    <p className="text-slate-300 text-xs sm:text-sm mt-1">
-                        Type any natural language prompt (e.g. video shoots, presentations, podcasting, sports) to get instant AI-matched equipment bundles.
+                    <p className="text-slate-300 text-xs sm:text-sm mt-1 font-medium">
+                        Type any natural language prompt (e.g. camera, projector, cricket bat, calculator, tent, laptop) to get instant matched campus resources.
                     </p>
                 </div>
 
@@ -120,8 +131,8 @@ export default function AIMatchPage() {
                                 type="text"
                                 value={inputPrompt}
                                 onChange={(e) => setInputPrompt(e.target.value)}
-                                placeholder="e.g. 'I need to shoot a club reel tomorrow under ₹300'"
-                                className="w-full bg-transparent text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none py-2 font-medium"
+                                placeholder="e.g. 'I need a scientific calculator for exam' or 'camping tent'"
+                                className="w-full bg-transparent text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none py-2 font-semibold"
                             />
                             <button
                                 type="button"
@@ -138,87 +149,70 @@ export default function AIMatchPage() {
                     </div>
                 </form>
 
-                {/* Preset Intent Prompt Suggestion Pills */}
-                <div className="flex flex-wrap gap-2 text-xs pt-1">
-                    <span className="text-slate-400 font-bold self-center mr-1">Quick Search Prompts:</span>
-                    <button
-                        onClick={() => handlePresetClick('I need to shoot a club reel tomorrow under ₹300')}
-                        className="bg-slate-800/90 hover:bg-slate-700 text-emerald-300 border border-slate-700 px-3 py-1.5 rounded-xl transition-colors"
-                    >
-                        🎬 "Shoot a club reel under ₹300"
-                    </button>
-                    <button
-                        onClick={() => handlePresetClick('I need a podcast microphone setup')}
-                        className="bg-slate-800/90 hover:bg-slate-700 text-teal-300 border border-slate-700 px-3 py-1.5 rounded-xl transition-colors"
-                    >
-                        🎙️ "Podcast recording setup"
-                    </button>
-                    <button
-                        onClick={() => handlePresetClick('I need a projector for a presentation tomorrow')}
-                        className="bg-slate-800/90 hover:bg-slate-700 text-indigo-300 border border-slate-700 px-3 py-1.5 rounded-xl transition-colors"
-                    >
-                        📊 "Projector for presentation"
-                    </button>
-                    <button
-                        onClick={() => handlePresetClick('I need a cricket bat kit for a weekend match')}
-                        className="bg-slate-800/90 hover:bg-slate-700 text-amber-300 border border-slate-700 px-3 py-1.5 rounded-xl transition-colors"
-                    >
-                        🏏 "Cricket bat kit for match"
-                    </button>
-                    <button
-                        onClick={() => handlePresetClick('I need camping tent equipment for outdoor trekking')}
-                        className="bg-slate-800/90 hover:bg-slate-700 text-purple-300 border border-slate-700 px-3 py-1.5 rounded-xl transition-colors"
-                    >
-                        ⛺ "Camping tent & trekking"
-                    </button>
+                {/* Quick Search Prompts Pills */}
+                <div className="space-y-2 pt-1">
+                    <span className="text-slate-400 text-[11px] font-extrabold uppercase tracking-wider block">Quick Category Searches:</span>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                        {quickPrompts.map((qp, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => handlePresetClick(qp.prompt)}
+                                className="bg-slate-800/90 hover:bg-emerald-950 text-slate-200 hover:text-emerald-300 border border-slate-700 hover:border-emerald-700 px-3 py-1.5 rounded-xl transition-all font-bold"
+                            >
+                                {qp.label}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 {/* AI Extracted Entity Cards */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-800/80">
-                    <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800">
+                    <div className="bg-slate-900/80 p-3.5 rounded-2xl border border-slate-800">
                         <span className="text-[10px] text-slate-400 font-bold uppercase">Extracted Purpose</span>
                         <div className="text-xs font-bold text-white mt-0.5">{parsed.purpose}</div>
                     </div>
-                    <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800">
+                    <div className="bg-slate-900/80 p-3.5 rounded-2xl border border-slate-800">
                         <span className="text-[10px] text-slate-400 font-bold uppercase">Target Budget</span>
                         <div className="text-xs font-bold text-emerald-400 mt-0.5">{parsed.estimatedBudget}</div>
                     </div>
-                    <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800">
+                    <div className="bg-slate-900/80 p-3.5 rounded-2xl border border-slate-800">
                         <span className="text-[10px] text-slate-400 font-bold uppercase">Required Date</span>
                         <div className="text-xs font-bold text-white mt-0.5">{parsed.date}</div>
                     </div>
-                    <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800">
-                        <span className="text-[10px] text-slate-400 font-bold uppercase">Required Equipment</span>
-                        <div className="text-xs font-bold text-indigo-300 mt-0.5">{parsed.requiredResources.length} Items</div>
+                    <div className="bg-slate-900/80 p-3.5 rounded-2xl border border-slate-800">
+                        <span className="text-[10px] text-slate-400 font-bold uppercase">Top Match Score</span>
+                        <div className="text-xs font-bold text-indigo-300 mt-0.5">
+                            {primaryMatch ? `${primaryMatch.matchData.matchPercentage}% Match` : 'Processing...'}
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Complete Equipment Kit Bundle Recommendation */}
+            {/* Recommended Equipment Bundle (Only when applicable) */}
             {parsed.bundleKit && (
                 <div className="bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl border-2 border-indigo-500/80 relative space-y-6">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                         <span className="text-xs font-black uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-800 flex items-center gap-1.5">
-                            <Package size={14} /> Multi-Resource Solution • 🎬 {parsed.bundleKit.name}
+                            <Package size={14} /> Recommended Multi-Resource Kit Solution
                         </span>
                         <button
                             onClick={() => setExplanationOpen(true)}
                             className="text-xs font-semibold text-indigo-300 hover:text-white flex items-center gap-1 underline underline-offset-4"
                         >
-                            <HelpCircle size={14} /> How is 96% Match calculated?
+                            <HelpCircle size={14} /> How is 98% Match calculated?
                         </button>
                     </div>
 
                     <div>
                         <h2 className="text-2xl font-black text-white">{parsed.bundleKit.name}</h2>
-                        <p className="text-xs text-slate-300 mt-1">{parsed.bundleKit.tagline}</p>
+                        <p className="text-xs text-slate-300 mt-1 font-medium">{parsed.bundleKit.tagline}</p>
                     </div>
 
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-900/80 p-4 rounded-2xl border border-slate-800">
                         {parsed.bundleKit.itemsIncluded.map((item, idx) => (
                             <div key={idx} className="flex items-center gap-2 text-xs text-slate-200">
                                 <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
-                                <span className="truncate">{item}</span>
+                                <span className="truncate font-semibold">{item}</span>
                             </div>
                         ))}
                     </div>
@@ -227,7 +221,7 @@ export default function AIMatchPage() {
                         <div>
                             <span className="text-xs text-slate-400 font-medium">Complete Kit Daily Rate</span>
                             <div className="text-2xl font-black text-emerald-400">
-                                ₹{parsed.bundleKit.dailyCharge}/day <span className="text-xs font-normal text-slate-400">+ ₹{parsed.bundleKit.deposit} refundable deposit (Saves ₹80/day)</span>
+                                ₹{parsed.bundleKit.dailyCharge}/day <span className="text-xs font-normal text-slate-400">+ ₹{parsed.bundleKit.deposit} refundable deposit</span>
                             </div>
                         </div>
 
@@ -246,10 +240,17 @@ export default function AIMatchPage() {
                 </div>
             )}
 
-            {/* Individual Matches & Explainable Breakdown */}
-            <div className="space-y-4 pt-4">
+            {/* Individual Matches Section */}
+            <div className="space-y-4 pt-2">
                 <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-bold text-slate-900">Individual Matching Resources</h3>
+                    <div>
+                        <h3 className="text-lg font-black text-slate-900 flex items-center gap-2">
+                            <Sparkles size={18} className="text-emerald-600" /> Best Matching Individual Resource
+                        </h3>
+                        <p className="text-xs text-slate-500">
+                            Matched based on exact search keywords, campus proximity, trust score, and availability.
+                        </p>
+                    </div>
                     <button onClick={() => setExplanationOpen(true)} className="text-xs font-bold text-emerald-600 hover:underline">
                         View 7-Factor Score Formula →
                     </button>
@@ -258,10 +259,10 @@ export default function AIMatchPage() {
                 {primaryMatch && (
                     <div className="bg-white border-2 border-emerald-500 rounded-3xl p-6 shadow-md space-y-6">
                         <div className="flex justify-between items-center">
-                            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
-                                Individual Match • {primaryMatch.matchData.matchPercentage}% Match
+                            <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                                🎯 Top Ranked Match • {primaryMatch.matchData.matchPercentage}% Suitability Match
                             </span>
-                            <button onClick={() => setExplanationOpen(true)} className="text-xs text-slate-500 hover:text-slate-900 flex items-center gap-1">
+                            <button onClick={() => setExplanationOpen(true)} className="text-xs text-slate-500 hover:text-slate-900 flex items-center gap-1 font-semibold">
                                 <HelpCircle size={14} /> Explain Score
                             </button>
                         </div>
@@ -271,20 +272,28 @@ export default function AIMatchPage() {
                             <ProductImageGallery images={primaryMatch.images} title={primaryMatch.title} />
 
                             {/* Info */}
-                            <div className="space-y-3 flex flex-col justify-between">
-                                <div>
-                                    <h4 className="text-xl font-bold text-slate-900">{primaryMatch.title}</h4>
-                                    <div className="text-xs text-slate-500 space-y-1 mt-2">
-                                        <div>Category: <strong>{primaryMatch.category}</strong></div>
-                                        <div>Location: <strong>{primaryMatch.distanceKm} km away</strong> ({primaryMatch.location})</div>
-                                        <div>Owner: <strong>{primaryMatch.owner.name}</strong> (Trust {primaryMatch.owner.trustScore}/100)</div>
-                                        <div>Condition: <strong>{primaryMatch.condition}</strong></div>
+                            <div className="space-y-4 flex flex-col justify-between">
+                                <div className="space-y-3">
+                                    <div className="flex justify-between items-start">
+                                        <h4 className="text-xl font-black text-slate-900">{primaryMatch.title}</h4>
+                                        <span className="bg-slate-900 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full">
+                                            {primaryMatch.category}
+                                        </span>
+                                    </div>
+
+                                    <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 space-y-1 text-xs text-slate-600">
+                                        <div>📍 Location: <strong>{primaryMatch.location} ({primaryMatch.distanceKm} km away)</strong></div>
+                                        <div>👤 Owner: <strong>{primaryMatch.owner.name}</strong> (Trust Score {primaryMatch.owner.trustScore}/100)</div>
+                                        <div>✨ Condition: <strong>{primaryMatch.condition}</strong></div>
+                                        {primaryMatch.accessories && (
+                                            <div>🎒 Included: <strong>{primaryMatch.accessories.join(', ')}</strong></div>
+                                        )}
                                     </div>
                                 </div>
 
                                 <div className="pt-4 border-t border-slate-100 flex justify-between items-center">
                                     <div>
-                                        <span className="text-2xl font-black text-slate-900">₹{primaryMatch.dailyCharge}/day</span>
+                                        <span className="text-2xl font-black text-emerald-700">₹{primaryMatch.dailyCharge}/day</span>
                                         <span className="block text-[10px] text-slate-400">+ ₹{primaryMatch.deposit} deposit</span>
                                     </div>
                                     <Button
@@ -292,9 +301,9 @@ export default function AIMatchPage() {
                                             setSelectedResource(primaryMatch);
                                             setRequestModalOpen(true);
                                         }}
-                                        className="bg-emerald-600 hover:bg-emerald-700 text-xs px-6 py-3 font-bold"
+                                        className="bg-emerald-600 hover:bg-emerald-700 text-xs px-6 py-3 font-bold shadow-md"
                                     >
-                                        Borrow Item
+                                        Borrow Item (₹{primaryMatch.dailyCharge}/day)
                                     </Button>
                                 </div>
                             </div>
@@ -303,39 +312,52 @@ export default function AIMatchPage() {
                 )}
             </div>
 
-            {/* Smart Alternatives */}
-            <div className="space-y-4">
-                <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                    <Layers size={18} className="text-emerald-600" /> Better Smart Alternatives
+            {/* Smart Alternatives Grid */}
+            <div className="space-y-4 pt-2">
+                <h3 className="text-lg font-black text-slate-900 flex items-center gap-2">
+                    <Layers size={18} className="text-indigo-600" /> More Related Campus Equipment
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {alternatives.map((res) => (
-                        <div key={res.id} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
-                            <div className="flex justify-between items-center">
-                                <span className="text-[10px] font-bold uppercase bg-slate-100 px-2 py-0.5 rounded text-slate-600">{res.category}</span>
-                                <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                                    {res.matchData.matchPercentage}% Match
-                                </span>
+                        <div key={res.id} className="bg-white border-2 border-slate-200 hover:border-indigo-400 rounded-3xl p-5 shadow-sm space-y-4 flex flex-col justify-between group">
+                            <div className="space-y-3">
+                                <div className="relative h-36 rounded-2xl overflow-hidden bg-slate-100">
+                                    <img
+                                        src={res.images && res.images[0] ? res.images[0] : 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600'}
+                                        alt={res.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                    />
+                                    <span className="absolute top-2 left-2 bg-slate-900/80 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full">
+                                        {res.category}
+                                    </span>
+                                    <span className="absolute top-2 right-2 text-xs font-extrabold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded-full border border-indigo-200">
+                                        {res.matchData.matchPercentage}% Match
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <h4 className="text-sm font-black text-slate-900 line-clamp-1">{res.title}</h4>
+                                    <div className="text-[11px] text-slate-500 mt-1">
+                                        📍 {res.distanceKm} km away • Owner Trust {res.owner.trustScore}/100
+                                    </div>
+                                </div>
                             </div>
 
-                            <h4 className="text-sm font-bold text-slate-900 line-clamp-1">{res.title}</h4>
-                            <div className="text-xs text-slate-500 space-y-1">
-                                <div>Distance: <strong>{res.distanceKm} km away</strong></div>
-                                <div>Owner Trust: <strong>{res.owner.trustScore}/100</strong></div>
-                            </div>
-
-                            <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-                                <span className="text-sm font-bold text-slate-900">₹{res.dailyCharge}/day</span>
+                            <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                                <div>
+                                    <span className="text-sm font-black text-slate-900">₹{res.dailyCharge}/day</span>
+                                    <span className="block text-[10px] text-slate-400">+ ₹{res.deposit} dep</span>
+                                </div>
                                 <Button
                                     size="sm"
                                     onClick={() => {
                                         setSelectedResource(res);
                                         setRequestModalOpen(true);
                                     }}
-                                    className="bg-slate-900 hover:bg-slate-800 text-white text-xs px-3 py-1.5"
+                                    className="bg-slate-900 hover:bg-slate-800 text-white text-xs px-4 py-2 font-bold rounded-xl"
                                 >
-                                    Select
+                                    Select Item
                                 </Button>
                             </div>
                         </div>
