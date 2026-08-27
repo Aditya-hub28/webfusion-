@@ -984,6 +984,75 @@ const initialKits = [
             'Rode Wireless GO II Dual Mics',
             'Godox SL-60W LED Video Light'
         ]
+    },
+    {
+        id: 'kit-2',
+        name: 'Podcast Studio Master Kit',
+        tagline: 'Shure Studio Mic + Boya Wireless + Soundcraft 8-Ch Mixer + Boom Arms',
+        dailyCharge: 220,
+        deposit: 400,
+        status: 'Available',
+        itemsIncluded: [
+            'Boya BY-M1 Lavalier Mics',
+            'Soundcraft 8-Channel USB Audio Mixer',
+            'Bose QC45 Headphones'
+        ]
+    },
+    {
+        id: 'kit-3',
+        name: 'Tournament Cricket Team Match Kit',
+        tagline: '2 Kashmir Willow Bats + 3 Leather Balls + Stumps + Full Protective Pads',
+        dailyCharge: 120,
+        deposit: 300,
+        status: 'Available',
+        itemsIncluded: [
+            'Cosco Kashmir Willow Cricket Bat',
+            '3x Match Leather Balls',
+            'Leg Guard Pads & Stumps'
+        ]
+    },
+    {
+        id: 'kit-4',
+        name: 'Wilderness Camping Trek Kit',
+        tagline: '4-Person Tent + 2 Sleeping Bags + 60L Backpack + Portable Stove + Lantern',
+        dailyCharge: 250,
+        deposit: 500,
+        status: 'Available',
+        itemsIncluded: [
+            'Decathlon 4-Person Camping Tent',
+            'Wildcraft Sleeping Bag (-5°C)',
+            'Quechua 60L Backpack',
+            'Coleman BBQ Grill',
+            '1000LM Lantern'
+        ]
+    },
+    {
+        id: 'kit-5',
+        name: 'Hackathon Presentation & AV Kit',
+        tagline: 'Epson Full HD Projector + 100" Screen + JBL PartyBox Speaker + Clicker',
+        dailyCharge: 310,
+        deposit: 600,
+        status: 'Available',
+        itemsIncluded: [
+            'Epson Full HD 1080p Projector',
+            '100-Inch Tripod Screen',
+            'JBL PartyBox 160W Speaker',
+            'Wireless Presentation Clicker'
+        ]
+    },
+    {
+        id: 'kit-6',
+        name: 'Robotics & IoT Prototyping Kit',
+        tagline: 'Arduino Uno Starter + Raspberry Pi 4 + Soldering Station + Caliper',
+        dailyCharge: 140,
+        deposit: 300,
+        status: 'Available',
+        itemsIncluded: [
+            'Arduino Uno R3 Starter Kit',
+            'Raspberry Pi 4 Model B (8GB)',
+            'Soldering Iron Station Kit',
+            'Digital Vernier Caliper'
+        ]
     }
 ];
 
@@ -1050,26 +1119,32 @@ export const useCircularStore = create(
 
             setPersona: (newPersona) => set({ persona: newPersona }),
 
-            // Edit Resource Action
             updateLenderResource: (resourceId, updatedData) => set((state) => ({
                 resources: state.resources.map(r =>
                     r.id === resourceId ? { ...r, ...updatedData } : r
                 )
             })),
 
-            // Delete Resource Action
             deleteLenderResource: (resourceId) => set((state) => ({
                 resources: state.resources.filter(r => r.id !== resourceId)
             })),
 
-            // Toggle Resource Availability
             toggleResourceAvailability: (resourceId) => set((state) => ({
                 resources: state.resources.map(r =>
                     r.id === resourceId ? { ...r, status: r.status === 'Available' ? 'Unavailable' : 'Available' } : r
                 )
             })),
 
-            // Add Resource
+            toggleKitAvailability: (kitId) => set((state) => ({
+                kits: state.kits.map(k =>
+                    k.id === kitId ? { ...k, status: k.status === 'Available' ? 'Unavailable' : 'Available' } : k
+                )
+            })),
+
+            deleteEquipmentKit: (kitId) => set((state) => ({
+                kits: state.kits.filter(k => k.id !== kitId)
+            })),
+
             addLenderResource: (resourceData) => set((state) => ({
                 resources: [
                     {
@@ -1090,7 +1165,6 @@ export const useCircularStore = create(
                 ]
             })),
 
-            // Add Kit
             addEquipmentKit: (kitData) => set((state) => ({
                 kits: [
                     {
