@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 
 // Pages
 import LandingPage from './pages/LandingPage';
@@ -15,12 +16,12 @@ import AdminDashboardPage from './pages/AdminDashboardPage';
 function App() {
     return (
         <BrowserRouter>
-            <div className="min-h-screen bg-slate-100/60 font-sans text-slate-900 selection:bg-emerald-500 selection:text-white antialiased overflow-x-hidden w-full max-w-full relative">
+            <div className="min-h-screen bg-slate-100/60 font-sans text-slate-900 selection:bg-emerald-500 selection:text-white antialiased flex flex-col justify-between overflow-x-hidden w-full max-w-full relative">
                 {/* Navbar */}
                 <Navbar />
 
                 {/* Main Content Area */}
-                <main className="pb-16 max-w-full overflow-x-hidden">
+                <main className="flex-1 w-full max-w-full overflow-x-hidden">
                     <Routes>
                         <Route path="/" element={<LandingPage />} />
                         <Route path="/discover" element={<DiscoveryPage />} />
@@ -38,6 +39,9 @@ function App() {
                         <Route path="*" element={<Navigate to="/" replace />} />
                     </Routes>
                 </main>
+
+                {/* Shared Full-Width Footer */}
+                <Footer />
             </div>
         </BrowserRouter>
     );

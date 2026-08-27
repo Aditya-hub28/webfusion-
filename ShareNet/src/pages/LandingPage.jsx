@@ -347,29 +347,6 @@ export default function LandingPage() {
                     })}
                 </div>
             </section>
-
-            {/* FOOTER */}
-            <footer className="border-t border-slate-200 pt-10 pb-6 bg-slate-900 text-white rounded-t-[40px] text-xs">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-black text-emerald-400">Campus Circular</h3>
-                            <p className="text-slate-400">Peer-to-Peer Resource Sharing & Circular Economy Engine</p>
-                        </div>
-                        <div className="flex flex-wrap gap-4 text-slate-300 font-bold">
-                            <Link to="/discover" className="hover:text-emerald-400">Discover Catalog</Link>
-                            <Link to="/ai-match" className="hover:text-emerald-400">AI Match</Link>
-                            <Link to="/my-borrowings" className="hover:text-emerald-400">My Borrowings</Link>
-                            <Link to="/my-lending" className="hover:text-emerald-400">Equipment Kits</Link>
-                            <Link to="/impact" className="hover:text-emerald-400">Impact Ledger</Link>
-                        </div>
-                    </div>
-
-                    <div className="pt-6 border-t border-slate-800 text-center text-slate-500 text-[11px]">
-                        © 2026 Campus Circular Economy Platform. TSEC Webfusion 2.0 Hackathon Project. All rights reserved.
-                    </div>
-                </div>
-            </footer>
         </div>
     );
 }
