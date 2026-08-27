@@ -17,7 +17,7 @@ const make5Photos = (baseImg, alt1, alt2, alt3, alt4) => [
 ];
 
 const initialResources = [
-    // --- 1. ELECTRONICS & TECH (10 Items x 5 Photos) ---
+    // --- 1. ELECTRONICS & TECH (10 Items) ---
     {
         id: 'res-1',
         title: 'Sony Alpha A7 III 4K Mirrorless Camera',
@@ -269,7 +269,7 @@ const initialResources = [
         borrowingConditions: ['Return with original cable']
     },
 
-    // --- 2. EVENT & AV EQUIPMENT (10 Items x 5 Photos) ---
+    // --- 2. EVENT & AV EQUIPMENT (10 Items) ---
     {
         id: 'res-7',
         title: 'Epson Full HD 1080p Portable LED Projector',
@@ -345,8 +345,183 @@ const initialResources = [
         accessories: ['Bowens Mount Reflector', 'Remote Control', 'Light Stand'],
         borrowingConditions: ['Allow COB bulb to cool before packing']
     },
+    {
+        id: 'res-a4',
+        title: '100-Inch Portable Tripod Projection Screen',
+        category: 'Event & AV',
+        condition: 'Excellent',
+        distanceKm: 0.9,
+        dailyCharge: 70,
+        deposit: 250,
+        platformFee: 10,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.79,
+        reviewsCount: 19,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800',
+            'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800',
+            'https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?w=800',
+            'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800',
+            'https://images.unsplash.com/photo-1595769816263-9b910be24d5f?w=800'
+        ),
+        location: 'Auditorium Store Room',
+        owner: priyaOwner,
+        accessories: ['Tripod Stand', 'Carrying Bag'],
+        borrowingConditions: ['Do not touch screen matte surface']
+    },
+    {
+        id: 'res-2',
+        title: 'Heavy Duty Fluid Head DSLR Tripod',
+        category: 'Event & AV',
+        condition: 'Excellent',
+        distanceKm: 0.8,
+        dailyCharge: 50,
+        deposit: 200,
+        platformFee: 10,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.8,
+        reviewsCount: 19,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?w=800',
+            'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800',
+            'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800',
+            'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800',
+            'https://images.unsplash.com/photo-1495707902641-75cac588d2e9?w=800'
+        ),
+        location: 'Hostel Block 3, Room 112',
+        owner: priyaOwner,
+        accessories: ['Quick Release Plate', 'Carrying Case'],
+        borrowingConditions: ['Ensure leg locks are tightened properly']
+    },
+    {
+        id: 'res-a6',
+        title: 'JBL PartyBox 110 Bluetooth Party Speaker (160W)',
+        category: 'Event & AV',
+        condition: 'Pristine',
+        distanceKm: 1.2,
+        dailyCharge: 220,
+        deposit: 600,
+        platformFee: 20,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.94,
+        reviewsCount: 51,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800',
+            'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800',
+            'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800',
+            'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800',
+            'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=800'
+        ),
+        location: 'Student Club Hub Block D',
+        owner: priyaOwner,
+        accessories: ['Power Cable', 'Wired Mic'],
+        borrowingConditions: ['Keep volume within campus noise regulation levels']
+    },
+    {
+        id: 'res-a7',
+        title: 'Soundcraft 8-Channel USB Audio Mixer Console',
+        category: 'Event & AV',
+        condition: 'Pristine',
+        distanceKm: 0.8,
+        dailyCharge: 130,
+        deposit: 400,
+        platformFee: 15,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.88,
+        reviewsCount: 22,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800',
+            'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800',
+            'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800',
+            'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800',
+            'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=800'
+        ),
+        location: 'Audio Studio Block A',
+        owner: priyaOwner,
+        accessories: ['Power Adapter', '2x XLR Cables', 'USB Output Cable'],
+        borrowingConditions: ['Keep gain knobs centered']
+    },
+    {
+        id: 'res-a8',
+        title: 'Neewer Octagon Softbox Lighting Kit (Set of 2)',
+        category: 'Event & AV',
+        condition: 'Pristine',
+        distanceKm: 0.5,
+        dailyCharge: 95,
+        deposit: 300,
+        platformFee: 10,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.86,
+        reviewsCount: 30,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800',
+            'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800',
+            'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800',
+            'https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?w=800',
+            'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800'
+        ),
+        location: 'Media Center Studio 2',
+        owner: priyaOwner,
+        accessories: ['2x 2M Light Stands', '2x Softbox Covers', 'Diffuser Cloths'],
+        borrowingConditions: ['Fold softboxes carefully after use']
+    },
+    {
+        id: 'res-a9',
+        title: 'Chauvet DJ 500W Portable Stage Fog Machine',
+        category: 'Event & AV',
+        condition: 'Good',
+        distanceKm: 1.4,
+        dailyCharge: 80,
+        deposit: 250,
+        platformFee: 10,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.75,
+        reviewsCount: 15,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800',
+            'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800',
+            'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800',
+            'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800',
+            'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800'
+        ),
+        location: 'Cultural Fest Store',
+        owner: priyaOwner,
+        accessories: ['Wired Remote', '1L Fog Fluid Bottle'],
+        borrowingConditions: ['Use only provided water-based fog fluid']
+    },
+    {
+        id: 'res-a10',
+        title: 'Wireless Presentation Clicker with Green Laser',
+        category: 'Event & AV',
+        condition: 'Pristine',
+        distanceKm: 0.2,
+        dailyCharge: 25,
+        deposit: 100,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.9,
+        reviewsCount: 44,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800',
+            'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48a?w=800',
+            'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800',
+            'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=800',
+            'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=800'
+        ),
+        location: 'Media Center Block B',
+        owner: priyaOwner,
+        accessories: ['USB Receiver', 'AAA Battery'],
+        borrowingConditions: ['Return USB dongle safely inside clicker slot']
+    },
 
-    // --- 3. SPORTS & FITNESS (10 Items x 5 Photos) ---
+    // --- 3. SPORTS & FITNESS (10 Items) ---
     {
         id: 'res-5',
         title: 'Cosco Kashmir Willow Cricket Bat Match Kit',
@@ -372,8 +547,233 @@ const initialResources = [
         accessories: ['3x Leather Balls', 'Wooden Stumps', 'Leg Guard Pads'],
         borrowingConditions: ['Clean bat grip after use']
     },
+    {
+        id: 'res-s2',
+        title: 'Yonex Astrox Badminton Racket Pair (Strung 26lbs)',
+        category: 'Sports',
+        condition: 'Pristine',
+        distanceKm: 0.4,
+        dailyCharge: 45,
+        deposit: 180,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.91,
+        reviewsCount: 39,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=800',
+            'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800',
+            'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800',
+            'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800',
+            'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800'
+        ),
+        location: 'Badminton Court Locker 3',
+        owner: priyaOwner,
+        accessories: ['Carrying Case', 'Tube of Mavis 350 Shuttles'],
+        borrowingConditions: ['Do not drag racket on court floor']
+    },
+    {
+        id: 'res-s3',
+        title: 'Nivia Pro Match Football (Size 5 FIFA Approved)',
+        category: 'Sports',
+        condition: 'Pristine',
+        distanceKm: 0.3,
+        dailyCharge: 30,
+        deposit: 120,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.88,
+        reviewsCount: 47,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800',
+            'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800',
+            'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800',
+            'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800',
+            'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800'
+        ),
+        location: 'Hostel Ground',
+        owner: priyaOwner,
+        accessories: ['Ball Pump', 'Inflation Needle'],
+        borrowingConditions: ['Return fully inflated']
+    },
+    {
+        id: 'res-s4',
+        title: 'Spalding TF-1000 Legacy Indoor Basketball',
+        category: 'Sports',
+        condition: 'Pristine',
+        distanceKm: 0.5,
+        dailyCharge: 35,
+        deposit: 150,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.93,
+        reviewsCount: 32,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800',
+            'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800',
+            'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800',
+            'https://images.unsplash.com/photo-1534158914592-062992fbe900?w=800',
+            'https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=800'
+        ),
+        location: 'Indoor Basketball Court',
+        owner: priyaOwner,
+        accessories: ['Mesh Ball Carry Bag'],
+        borrowingConditions: ['Use on wooden/synthetic court only']
+    },
+    {
+        id: 'res-s5',
+        title: 'Decathlon Table Tennis Racket Set (2 Bats + 6 Balls)',
+        category: 'Sports',
+        condition: 'Pristine',
+        distanceKm: 0.2,
+        dailyCharge: 30,
+        deposit: 100,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.84,
+        reviewsCount: 26,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1534158914592-062992fbe900?w=800',
+            'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=800',
+            'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800',
+            'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800',
+            'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800'
+        ),
+        location: 'Student Common Room',
+        owner: priyaOwner,
+        accessories: ['Padded Storage Case', '6x 3-Star Balls'],
+        borrowingConditions: ['Keep rubber pads clean']
+    },
+    {
+        id: 'res-s6',
+        title: 'Boldfit Heavy Duty Resistance Bands Set (5 Tube Levels)',
+        category: 'Sports',
+        condition: 'Pristine',
+        distanceKm: 0.4,
+        dailyCharge: 25,
+        deposit: 100,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.87,
+        reviewsCount: 21,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=800',
+            'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800',
+            'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800',
+            'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800',
+            'https://images.unsplash.com/photo-1534158914592-062992fbe900?w=800'
+        ),
+        location: 'Hostel Gym Annex',
+        owner: priyaOwner,
+        accessories: ['Door Anchor', '2x Handles', '2x Ankle Straps', 'Carrying Bag'],
+        borrowingConditions: ['Wipe clean after workout session']
+    },
+    {
+        id: 'res-s7',
+        title: 'Stag International Volleyball with Net Kit',
+        category: 'Sports',
+        condition: 'Excellent',
+        distanceKm: 0.7,
+        dailyCharge: 40,
+        deposit: 150,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.8,
+        reviewsCount: 17,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800',
+            'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800',
+            'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800',
+            'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800',
+            'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800'
+        ),
+        location: 'Volleyball Court Store',
+        owner: priyaOwner,
+        accessories: ['Volleyball Net', 'Boundary Lines', 'Pump'],
+        borrowingConditions: ['Roll net neatly back in bag']
+    },
+    {
+        id: 'res-s8',
+        title: 'Vector X 10mm Extra Thick Non-Slip Yoga Mat',
+        category: 'Sports',
+        condition: 'Pristine',
+        distanceKm: 0.3,
+        dailyCharge: 20,
+        deposit: 80,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.9,
+        reviewsCount: 35,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800',
+            'https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=800',
+            'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800',
+            'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800',
+            'https://images.unsplash.com/photo-1534158914592-062992fbe900?w=800'
+        ),
+        location: 'Hostel Block 2, Room 405',
+        owner: priyaOwner,
+        accessories: ['Carrying Strap'],
+        borrowingConditions: ['Sanitize mat after yoga session']
+    },
+    {
+        id: 'res-s9',
+        title: 'Decathlon Quechua Anti-Shock Trekking Poles (Pair)',
+        category: 'Sports',
+        condition: 'Pristine',
+        distanceKm: 0.9,
+        dailyCharge: 35,
+        deposit: 140,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.89,
+        reviewsCount: 14,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800',
+            'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+            'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800',
+            'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
+            'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800'
+        ),
+        location: 'Hostel Block 2, Room 405',
+        owner: priyaOwner,
+        accessories: ['Rubber Baskets', 'Mud Caps'],
+        borrowingConditions: ['Collapse locks before returning']
+    },
+    {
+        id: 'res-s10',
+        title: 'Kettlebell 12kg Cast Iron Weight',
+        category: 'Sports',
+        condition: 'Good',
+        distanceKm: 0.5,
+        dailyCharge: 30,
+        deposit: 120,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.76,
+        reviewsCount: 12,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800',
+            'https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=800',
+            'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800',
+            'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800',
+            'https://images.unsplash.com/photo-1534158914592-062992fbe900?w=800'
+        ),
+        location: 'Hostel Gym Annex',
+        owner: priyaOwner,
+        accessories: ['Rubber Protective Base'],
+        borrowingConditions: ['Do not drop directly on tiled flooring']
+    },
 
-    // --- 4. ACADEMIC & LAB TOOLS (10 Items x 5 Photos) ---
+    // --- 4. ACADEMIC & LAB TOOLS (10 Items) ---
     {
         id: 'res-8',
         title: 'Casio FX-991EX Classwiz Scientific Calculator',
@@ -399,8 +799,233 @@ const initialResources = [
         accessories: ['Hard Protective Case'],
         borrowingConditions: ['Return before exam session ends']
     },
+    {
+        id: 'res-c2',
+        title: 'Mini Drafter & Engineering Drawing Board Set',
+        category: 'Academic',
+        condition: 'Pristine',
+        distanceKm: 0.4,
+        dailyCharge: 30,
+        deposit: 120,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.9,
+        reviewsCount: 33,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800',
+            'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48a?w=800',
+            'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800',
+            'https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800',
+            'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800'
+        ),
+        location: 'Engineering Drawing Hall B',
+        owner: priyaOwner,
+        accessories: ['A2 Wooden Drawing Board', 'Mini Drafter Clamp', 'Canvas Bag'],
+        borrowingConditions: ['Keep scale arms unbent']
+    },
+    {
+        id: 'res-c3',
+        title: 'Arduino Uno R3 Ultimate Project Starter Kit',
+        category: 'Academic',
+        condition: 'Pristine',
+        distanceKm: 0.6,
+        dailyCharge: 45,
+        deposit: 180,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.88,
+        reviewsCount: 29,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800',
+            'https://images.unsplash.com/photo-1608564697071-ddf911d81370?w=800',
+            'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800',
+            'https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800',
+            'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48a?w=800'
+        ),
+        location: 'Robotics Lab Block C',
+        owner: priyaOwner,
+        accessories: ['Breadboard', '30x Sensors', 'Jumper Wires', 'LCD Display', 'Component Box'],
+        borrowingConditions: ['Return all resistor bands in compartment organizer']
+    },
+    {
+        id: 'res-c4',
+        title: 'Digital LCD Vernier Caliper (0-150mm Stainless Steel)',
+        category: 'Academic',
+        condition: 'Pristine',
+        distanceKm: 0.3,
+        dailyCharge: 25,
+        deposit: 100,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.92,
+        reviewsCount: 24,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800',
+            'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800',
+            'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800',
+            'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48a?w=800',
+            'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800'
+        ),
+        location: 'Mechanical Workshop 1',
+        owner: priyaOwner,
+        accessories: ['Hard Plastic Case', 'Spare LR44 Battery'],
+        borrowingConditions: ['Turn off digital display after use']
+    },
+    {
+        id: 'res-c5',
+        title: 'Soldering Iron Station Kit (60W Temp Controlled)',
+        category: 'Academic',
+        condition: 'Pristine',
+        distanceKm: 0.5,
+        dailyCharge: 35,
+        deposit: 140,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.83,
+        reviewsCount: 21,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800',
+            'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800',
+            'https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800',
+            'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48a?w=800',
+            'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800'
+        ),
+        location: 'Electronics Lab Block C',
+        owner: priyaOwner,
+        accessories: ['Soldering Stand', 'Desoldering Pump', 'Lead-Free Solder Wire', '5x Tips'],
+        borrowingConditions: ['Clean soldering tip with brass sponge before returning']
+    },
+    {
+        id: 'res-c6',
+        title: 'White Cotton Chemistry Lab Coat (Unisex Large)',
+        category: 'Academic',
+        condition: 'Pristine',
+        distanceKm: 0.1,
+        dailyCharge: 15,
+        deposit: 60,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.95,
+        reviewsCount: 60,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800',
+            'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800',
+            'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800',
+            'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48a?w=800',
+            'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800'
+        ),
+        location: 'Chemistry Lab Block A',
+        owner: priyaOwner,
+        accessories: ['Safety Goggles'],
+        borrowingConditions: ['Return washed and ironed']
+    },
+    {
+        id: 'res-c7',
+        title: 'Littmann Classic III Medical Stethoscope',
+        category: 'Academic',
+        condition: 'Pristine',
+        distanceKm: 0.7,
+        dailyCharge: 60,
+        deposit: 250,
+        platformFee: 10,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.97,
+        reviewsCount: 38,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800',
+            'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800',
+            'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800',
+            'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48a?w=800',
+            'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800'
+        ),
+        location: 'Biotech Dept Block D',
+        owner: priyaOwner,
+        accessories: ['Spare Eartips', 'Non-Chill Rim', 'Protective Pouch'],
+        borrowingConditions: ['Sanitize earpieces with alcohol wipe']
+    },
+    {
+        id: 'res-c8',
+        title: 'Portable USB Digital Oscilloscope 20MHz (2-Channel)',
+        category: 'Academic',
+        condition: 'Pristine',
+        distanceKm: 0.8,
+        dailyCharge: 85,
+        deposit: 300,
+        platformFee: 10,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.89,
+        reviewsCount: 15,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800',
+            'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800',
+            'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800',
+            'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48a?w=800',
+            'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800'
+        ),
+        location: 'Hardware Lab Block C',
+        owner: priyaOwner,
+        accessories: ['2x Oscilloscope Probes', 'USB PC Cable'],
+        borrowingConditions: ['Max input voltage 35V']
+    },
+    {
+        id: 'res-c9',
+        title: 'Dissection Kit Stainless Steel (11 Pieces Medical)',
+        category: 'Academic',
+        condition: 'Pristine',
+        distanceKm: 0.4,
+        dailyCharge: 25,
+        deposit: 100,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.86,
+        reviewsCount: 19,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800',
+            'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800',
+            'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800',
+            'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48a?w=800',
+            'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800'
+        ),
+        location: 'Zoology Lab Block D',
+        owner: priyaOwner,
+        accessories: ['Scalpel Handles', 'Scissors', 'Forceps', 'Storage Leather Case'],
+        borrowingConditions: ['Clean and sterilize all blades post lab']
+    },
+    {
+        id: 'res-c10',
+        title: '1000x USB Digital Microscope HD with LED Stand',
+        category: 'Academic',
+        condition: 'Pristine',
+        distanceKm: 0.6,
+        dailyCharge: 50,
+        deposit: 200,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.91,
+        reviewsCount: 27,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800',
+            'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800',
+            'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800',
+            'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48a?w=800',
+            'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800'
+        ),
+        location: 'Biology Lab Block D',
+        owner: priyaOwner,
+        accessories: ['Metal Stand', 'Calibration Ruler', 'USB Cable'],
+        borrowingConditions: ['Do not scratch optical lens']
+    },
 
-    // --- 5. CAMPING & OUTDOOR (10 Items x 5 Photos) ---
+    // --- 5. CAMPING & OUTDOOR (10 Items) ---
     {
         id: 'res-6',
         title: 'Decathlon 4-Person Waterproof Camping Tent & Stove Kit',
@@ -425,21 +1050,233 @@ const initialResources = [
         owner: priyaOwner,
         accessories: ['4 Sleeping Bags', 'Portable Gas Stove', 'Headlamp'],
         borrowingConditions: ['Ensure tent is dry before packing']
+    },
+    {
+        id: 'res-t2',
+        title: 'Wildcraft Camping Sleeping Bag (-5°C Rated)',
+        category: 'Camping',
+        condition: 'Pristine',
+        distanceKm: 0.8,
+        dailyCharge: 40,
+        deposit: 150,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.92,
+        reviewsCount: 31,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800',
+            'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+            'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
+            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800',
+            'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800'
+        ),
+        location: 'Hostel Block 2, Room 405',
+        owner: priyaOwner,
+        accessories: ['Compression Sack'],
+        borrowingConditions: ['Use clean inner liner']
+    },
+    {
+        id: 'res-t3',
+        title: 'Quechua Forclaz 60L Waterproof Trekking Backpack',
+        category: 'Camping',
+        condition: 'Pristine',
+        distanceKm: 0.6,
+        dailyCharge: 60,
+        deposit: 250,
+        platformFee: 10,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.95,
+        reviewsCount: 40,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
+            'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+            'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800',
+            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800',
+            'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800'
+        ),
+        location: 'Hostel Block 2, Room 405',
+        owner: priyaOwner,
+        accessories: ['Integrated Rain Cover'],
+        borrowingConditions: ['Empty all pockets before return']
+    },
+    {
+        id: 'res-t4',
+        title: 'Coleman Portable Gas Barbecue Grill Stove',
+        category: 'Camping',
+        condition: 'Excellent',
+        distanceKm: 1.3,
+        dailyCharge: 90,
+        deposit: 300,
+        platformFee: 10,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.83,
+        reviewsCount: 18,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800',
+            'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+            'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800',
+            'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
+            'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800'
+        ),
+        location: 'Campus Recreation Ground',
+        owner: priyaOwner,
+        accessories: ['Grill Tongs', 'Cleaning Brush', '2x Butane Canisters'],
+        borrowingConditions: ['Scrub grill grate clean after use']
+    },
+    {
+        id: 'res-t5',
+        title: 'Folding Lightweight Camping Chairs (Pair)',
+        category: 'Camping',
+        condition: 'Pristine',
+        distanceKm: 0.5,
+        dailyCharge: 35,
+        deposit: 120,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.87,
+        reviewsCount: 25,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+            'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800',
+            'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
+            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800',
+            'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800'
+        ),
+        location: 'Hostel Block 2, Room 405',
+        owner: priyaOwner,
+        accessories: ['2x Shoulder Storage Bags', 'Built-in Cup Holders'],
+        borrowingConditions: ['Max weight capacity 110kg per chair']
+    },
+    {
+        id: 'res-t6',
+        title: 'LED Rechargeable 1000LM Waterproof Camping Lantern',
+        category: 'Camping',
+        condition: 'Pristine',
+        distanceKm: 0.3,
+        dailyCharge: 25,
+        deposit: 100,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.9,
+        reviewsCount: 29,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800',
+            'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+            'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
+            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800',
+            'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800'
+        ),
+        location: 'Hostel Block 2, Room 405',
+        owner: priyaOwner,
+        accessories: ['USB-C Charging Cable', 'Hanging Hook'],
+        borrowingConditions: ['Charge battery to 100% before returning']
+    },
+    {
+        id: 'res-t7',
+        title: 'Fastrack Heavy Duty Bicycle U-Lock & Cable Set',
+        category: 'Camping',
+        condition: 'Pristine',
+        distanceKm: 0.2,
+        dailyCharge: 15,
+        deposit: 80,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.94,
+        reviewsCount: 55,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800',
+            'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+            'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800',
+            'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
+            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800'
+        ),
+        location: 'Bicycle Stand Block A',
+        owner: priyaOwner,
+        accessories: ['2x Keys', 'Frame Mount Bracket'],
+        borrowingConditions: ['Keep spare key safe']
+    },
+    {
+        id: 'res-t8',
+        title: 'Stanley Classic 1.4L Vacuum Insulated Flask',
+        category: 'Camping',
+        condition: 'Pristine',
+        distanceKm: 0.4,
+        dailyCharge: 20,
+        deposit: 90,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.96,
+        reviewsCount: 33,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800',
+            'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+            'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800',
+            'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
+            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800'
+        ),
+        location: 'Hostel Block 2, Room 405',
+        owner: priyaOwner,
+        accessories: ['Insulated Lid Cup'],
+        borrowingConditions: ['Rinse with warm water before returning']
+    },
+    {
+        id: 'res-t9',
+        title: 'Double Portable Nylon Camping Hammock with Tree Straps',
+        category: 'Camping',
+        condition: 'Pristine',
+        distanceKm: 0.7,
+        dailyCharge: 30,
+        deposit: 120,
+        platformFee: 5,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.88,
+        reviewsCount: 27,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800',
+            'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+            'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800',
+            'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
+            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800'
+        ),
+        location: 'Campus Lawn Area',
+        owner: priyaOwner,
+        accessories: ['2x Heavy Duty Carabiners', '2x Tree Straps', 'Attached Pouch'],
+        borrowingConditions: ['Tie only to sturdy trees']
+    },
+    {
+        id: 'res-t10',
+        title: 'Jackery Portable Power Station 300W Solar Generator',
+        category: 'Camping',
+        condition: 'Pristine',
+        distanceKm: 1.5,
+        dailyCharge: 200,
+        deposit: 600,
+        platformFee: 20,
+        status: 'Available',
+        moderationStatus: 'Approved',
+        rating: 4.98,
+        reviewsCount: 16,
+        images: make5Photos(
+            'https://images.unsplash.com/photo-1609592424074-27515cfb2a6a?w=800',
+            'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+            'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800',
+            'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
+            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800'
+        ),
+        location: 'Hostel Block 2, Room 405',
+        owner: priyaOwner,
+        accessories: ['AC Wall Charger', 'Car Charger Cable', 'Solar Connector Cable'],
+        borrowingConditions: ['Do not expose to rain or moisture']
     }
 ];
-
-// Ensure all 44 additional items in initialResources have 5 photos as well
-for (let i = 0; i < initialResources.length; i++) {
-    if (!initialResources[i].images || initialResources[i].images.length < 5) {
-        initialResources[i].images = make5Photos(
-            initialResources[i].images ? initialResources[i].images[0] : 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800',
-            'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800',
-            'https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?w=800',
-            'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800',
-            'https://images.unsplash.com/photo-1495707902641-75cac588d2e9?w=800'
-        );
-    }
-}
 
 const initialKits = [
     {
@@ -756,7 +1593,7 @@ export const useCircularStore = create(
             })
         }),
         {
-            name: 'campus-circular-storage'
+            name: 'campus-circular-v3-storage'
         }
     )
 );
