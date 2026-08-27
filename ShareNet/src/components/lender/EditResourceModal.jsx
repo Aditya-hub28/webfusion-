@@ -12,6 +12,7 @@ export default function EditResourceModal({ isOpen, onClose, resource, onSave })
     const [condition, setCondition] = useState('Pristine');
     const [status, setStatus] = useState('Available');
     const [accessoriesText, setAccessoriesText] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
 
     useEffect(() => {
         if (resource) {
@@ -23,6 +24,7 @@ export default function EditResourceModal({ isOpen, onClose, resource, onSave })
             setCondition(resource.condition || 'Pristine');
             setStatus(resource.status || 'Available');
             setAccessoriesText(Array.isArray(resource.accessories) ? resource.accessories.join(', ') : '');
+            setImageUrl(resource.images && resource.images[0] ? resource.images[0] : '');
         }
     }, [resource]);
 
@@ -38,7 +40,8 @@ export default function EditResourceModal({ isOpen, onClose, resource, onSave })
             location,
             condition,
             status,
-            accessories: accessoriesText.split(',').map(s => s.trim()).filter(Boolean)
+            accessories: accessoriesText.split(',').map(s => s.trim()).filter(Boolean),
+            images: imageUrl.trim() ? [imageUrl.trim(), imageUrl.trim(), imageUrl.trim(), imageUrl.trim(), imageUrl.trim()] : resource.images
         };
 
         onSave(resource.id, updated);
@@ -158,6 +161,17 @@ export default function EditResourceModal({ isOpen, onClose, resource, onSave })
                             onChange={(e) => setAccessoriesText(e.target.value)}
                             className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none font-medium text-slate-900"
                             placeholder="e.g. 2x Batteries, Carrying Bag, Charger"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="font-bold text-slate-700 block mb-1">Product Photo URL (Optional)</label>
+                        <input
+                            type="text"
+                            value={imageUrl}
+                            onChange={(e) => setImageUrl(e.target.value)}
+                            className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none font-medium text-slate-900"
+                            placeholder="e.g. https://images.unsplash.com/photo-..."
                         />
                     </div>
 

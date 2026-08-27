@@ -159,7 +159,8 @@ const DEFAULT_KITS = [
     ],
     location: "Main Library, Media Lab (Room 204)",
     qrCode: "QR-KIT-FILM01",
-    status: "available"
+    status: "available",
+    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=400"
   },
   {
     _id: "kit-vr-1",
@@ -172,7 +173,8 @@ const DEFAULT_KITS = [
     ],
     location: "Engineering C-Block, Innovation Hub",
     qrCode: "QR-KIT-VRDEV",
-    status: "borrowed"
+    status: "borrowed",
+    image: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&q=80&w=400"
   }
 ];
 
@@ -222,6 +224,7 @@ const DEFAULT_LOST_FOUND = [
     type: "lost",
     location: "Engineering Block C, 3rd Floor",
     category: "Electronics",
+    image: "https://images.unsplash.com/photo-1588449668365-d15e397f6787?auto=format&fit=crop&q=80&w=400",
     reporter: DEFAULT_USERS[1], // Aditya
     resolved: false,
     createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
@@ -235,6 +238,7 @@ const DEFAULT_WANTED = [
     description: "Looking to borrow or buy a medium lab coat and goggles for this Friday lab session. Will return it same day.",
     category: "Academic",
     priceLimit: 150,
+    image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=400",
     reporter: DEFAULT_USERS[1],
     createdAt: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString(),
     offersCount: 2

@@ -7,12 +7,13 @@ import toast from 'react-hot-toast';
 export default function AddResourceModal({ isOpen, onClose, onAddResource, onAddKit }) {
     const [activeTab, setActiveTab] = useState('single'); // 'single' | 'kit'
     const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('Cameras');
+    const [category, setCategory] = useState('Electronics');
     const [dailyCharge, setDailyCharge] = useState(150);
     const [deposit, setDeposit] = useState(400);
     const [condition, setCondition] = useState('Excellent');
     const [location, setLocation] = useState('Media Center Block B, Room 204');
     const [accessoriesStr, setAccessoriesStr] = useState('Carrying Pouch, Power Cable');
+    const [imageUrl, setImageUrl] = useState('');
 
     // Kit fields
     const [kitName, setKitName] = useState('Complete Filmmaking Suite');
@@ -22,9 +23,18 @@ export default function AddResourceModal({ isOpen, onClose, onAddResource, onAdd
 
     if (!isOpen) return null;
 
+    const categoryImages = {
+        'Electronics': 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800',
+        'Event & AV': 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800',
+        'Sports': 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800',
+        'Academic': 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800',
+        'Camping': 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800'
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (activeTab === 'single') {
+            const selectedImg = imageUrl.trim() || categoryImages[category] || 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800';
             onAddResource({
                 title: title || 'Canon EOS DSLR Camera',
                 category,
@@ -32,7 +42,8 @@ export default function AddResourceModal({ isOpen, onClose, onAddResource, onAdd
                 deposit: Number(deposit),
                 condition,
                 location,
-                accessories: accessoriesStr.split(',').map(s => s.trim())
+                accessories: accessoriesStr.split(',').map(s => s.trim()),
+                images: [selectedImg, selectedImg, selectedImg, selectedImg, selectedImg]
             });
             toast.success('New resource listing added successfully!');
         } else {
@@ -41,10 +52,16 @@ export default function AddResourceModal({ isOpen, onClose, onAddResource, onAdd
                 tagline: kitTagline,
                 dailyCharge: Number(kitCharge),
                 deposit: Number(kitDeposit),
-                itemsIncluded: ['Camera Body', 'Fluid Head Tripod', 'Wireless Mic Set', 'LED Video Light']
+                itemsIncluded: ['Camera Body', 'Fluid Head Tripod', 'Wireless Mic Set', 'LED Video Light'],
+                images: [
+                    'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800',
+                    'https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?w=800'
+                ]
             });
             toast.success('New Equipment Kit Bundle created!');
         }
+        setTitle('');
+        setImageUrl('');
         onClose();
     };
 
@@ -89,14 +106,13 @@ export default function AddResourceModal({ isOpen, onClose, onAddResource, onAdd
                                     <select
                                         value={category}
                                         onChange={(e) => setCategory(e.target.value)}
-                                        className="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-white"
+                                        className="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-white font-bold"
                                     >
-                                        <option value="Cameras">Cameras</option>
-                                        <option value="Tripods">Tripods</option>
-                                        <option value="Microphones">Microphones</option>
-                                        <option value="Lighting">Lighting</option>
-                                        <option value="Sports">Sports Equipment</option>
-                                        <option value="Projectors">Projectors & Displays</option>
+                                        <option value="Electronics">Electronics & Tech</option>
+                                        <option value="Event & AV">Event & AV Equipment</option>
+                                        <option value="Sports">Sports & Fitness</option>
+                                        <option value="Academic">Academic Supplies</option>
+                                        <option value="Camping">Camping & Outdoor</option>
                                     </select>
                                 </div>
 
@@ -145,6 +161,17 @@ export default function AddResourceModal({ isOpen, onClose, onAddResource, onAdd
                                     value={accessoriesStr}
                                     onChange={(e) => setAccessoriesStr(e.target.value)}
                                     placeholder="2x Batteries, 128GB SD Card, Strap, Bag"
+                                    className="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block font-bold text-slate-700 uppercase mb-1">Product Photo URL (Optional)</label>
+                                <input
+                                    type="text"
+                                    value={imageUrl}
+                                    onChange={(e) => setImageUrl(e.target.value)}
+                                    placeholder="Paste Unsplash image link or leave blank for auto-image"
                                     className="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                                 />
                             </div>
