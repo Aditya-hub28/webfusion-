@@ -9,9 +9,10 @@ import EditResourceModal from '../components/lender/EditResourceModal';
 import CreateKitModal from '../components/lender/CreateKitModal';
 import HandoverModal from '../components/transactions/HandoverModal';
 import TransactionStepper from '../components/transactions/TransactionStepper';
+import ProductImageGallery from '../components/ui/ProductImageGallery';
 import {
     Inbox, Package, Calendar, BarChart2, CheckCircle2, Plus, Edit3, Trash2,
-    ToggleLeft, ToggleRight, MapPin, Film, Sparkles, Layers, Check, Camera, Speaker, Trophy, BookOpen, Tent
+    ToggleLeft, ToggleRight, MapPin, Film, Sparkles, Check, Camera, Speaker, Trophy, BookOpen, Tent, Image as ImageIcon, X
 } from 'lucide-react';
 import Button from '../components/ui/Button';
 import toast from 'react-hot-toast';
@@ -40,6 +41,7 @@ export default function MyLendingPage() {
     const [addModalOpen, setAddModalOpen] = useState(false);
     const [createKitModalOpen, setCreateKitModalOpen] = useState(false);
     const [editingResource, setEditingResource] = useState(null);
+    const [galleryResource, setGalleryResource] = useState(null);
     const [damageModalOpen, setDamageModalOpen] = useState(null);
     const [handoverModalOpen, setHandoverModalOpen] = useState(null);
 
@@ -90,7 +92,7 @@ export default function MyLendingPage() {
                         Priya Patel's Resource Inventory
                     </h1>
                     <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                        Manage 50 individual campus resources, build multi-item equipment kit bundles, evaluate risk, and track earnings.
+                        Manage 50 total campus listings with 5 distinct photos per product, build kit bundles, and track earnings.
                     </p>
                 </div>
 
@@ -144,7 +146,7 @@ export default function MyLendingPage() {
                 </button>
             </div>
 
-            {/* TAB 1: INDIVIDUAL INVENTORY (50 ITEMS) */}
+            {/* TAB 1: INDIVIDUAL INVENTORY (50 ITEMS WITH 5 PHOTOS EACH) */}
             {activeTab === 'inventory' && (
                 <div className="space-y-6">
                     {/* Category Filter Bar */}
@@ -181,8 +183,11 @@ export default function MyLendingPage() {
                         {filteredResources.map((r) => (
                             <div key={r.id} className="bg-white border-2 border-slate-200 hover:border-emerald-500 rounded-3xl p-5 shadow-sm hover:shadow-md transition-all space-y-4 flex flex-col justify-between group">
                                 <div className="space-y-3">
-                                    {/* Image & Category */}
-                                    <div className="relative h-40 rounded-2xl overflow-hidden bg-slate-100">
+                                    {/* Image & 5 Photos Badge */}
+                                    <div
+                                        onClick={() => setGalleryResource(r)}
+                                        className="relative h-44 rounded-2xl overflow-hidden bg-slate-100 cursor-pointer"
+                                    >
                                         <img
                                             src={r.images && r.images[0] ? r.images[0] : 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600'}
                                             alt={r.title}
@@ -190,6 +195,9 @@ export default function MyLendingPage() {
                                         />
                                         <span className="absolute top-2 left-2 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-white/20">
                                             {r.category}
+                                        </span>
+                                        <span className="absolute bottom-2 right-2 bg-slate-950/80 backdrop-blur-md text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-slate-700 flex items-center gap-1">
+                                            <ImageIcon size={12} className="text-emerald-400" /> 5 Photos
                                         </span>
                                         <span className={`absolute top-2 right-2 text-[10px] font-extrabold px-2.5 py-1 rounded-full border ${
                                             r.status === 'Available' ? 'bg-emerald-950/80 text-emerald-400 border-emerald-700' : 'bg-slate-900/80 text-slate-400 border-slate-700'
@@ -257,7 +265,7 @@ export default function MyLendingPage() {
                 </div>
             )}
 
-            {/* TAB 2: DEDICATED EQUIPMENT KITS STUDIO */}
+            {/* TAB 2: DEDICATED EQUIPMENT KITS STUDIO WITH 5 PHOTOS PER KIT */}
             {activeTab === 'kits' && (
                 <div className="space-y-6">
                     <div className="flex justify-between items-center bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-6 rounded-3xl text-white shadow-xl">
@@ -269,7 +277,7 @@ export default function MyLendingPage() {
                                 Bundle Gear into Complete Solutions
                             </h2>
                             <p className="text-xs text-slate-300 max-w-xl">
-                                Create multi-resource bundles for video production, podcasts, tournaments, trekking, or presentations with discounted daily rates.
+                                Create multi-resource bundles for video production, podcasts, tournaments, trekking, or presentations with discounted daily rates and 5-photo galleries.
                             </p>
                         </div>
                         <Button onClick={() => setCreateKitModalOpen(true)} className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs py-3 px-5 shadow-lg">
@@ -451,6 +459,22 @@ export default function MyLendingPage() {
                             </div>
                         </div>
                     ))}
+                </div>
+            )}
+
+            {/* Lightbox / 5-Photo Gallery Modal */}
+            {galleryResource && (
+                <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+                    <div className="bg-white rounded-3xl max-w-3xl w-full p-6 relative space-y-4 shadow-2xl">
+                        <button
+                            onClick={() => setGalleryResource(null)}
+                            className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 rounded-full hover:bg-slate-100 z-10"
+                        >
+                            <X size={20} />
+                        </button>
+                        <h3 className="text-lg font-black text-slate-900">{galleryResource.title} — 5 Photo Gallery</h3>
+                        <ProductImageGallery images={galleryResource.images} title={galleryResource.title} />
+                    </div>
                 </div>
             )}
 
