@@ -1,0 +1,2 @@
+Hello! This is a test file to verify that the Git auto-sync watcher works correctly.
+It should be detected, staged, committed, and pushed automatically.
