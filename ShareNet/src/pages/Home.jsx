@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/ui';
 import { Package, Users, Shield, Clock, Search, MessageSquare, ShoppingBag, PlusCircle, AlertCircle, HelpCircle, Github } from 'lucide-react';
 import useAuthStore from '../stores/authStore';
+import SmartMatchWidget from '../components/SmartMatchWidget';
 
 const features = [
     {
@@ -113,6 +114,13 @@ export default function Home() {
                     )}
                 </div>
             </section>
+
+            {/* Smart Match Engine (Authenticated) */}
+            {isAuthenticated && (
+                <section className="max-w-4xl mx-auto">
+                    <SmartMatchWidget />
+                </section>
+            )}
 
             {/* Quick Access Grid (Authenticated) */}
             {isAuthenticated && (

@@ -1,33 +1,30 @@
-import { io } from 'socket.io-client';
+// Mock Socket.io client implementation for offline/mock mode
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:8000';
-
-let socket = null;
-
-export const connectSocket = (token) => {
-    if (socket?.connected) return socket;
-    
-    socket = io(SOCKET_URL, {
-        auth: { token },
-        transports: ['websocket', 'polling']
-    });
-    
-    socket.on('connect', () => {
-        console.log('Socket connected');
-    });
-    
-    socket.on('connect_error', (error) => {
-        console.error('Socket connection error:', error.message);
-    });
-    
-    return socket;
-};
-
-export const disconnectSocket = () => {
-    if (socket) {
-        socket.disconnect();
-        socket = null;
+const mockSocket = {
+    connected: true,
+    on: (event, callback) => {
+        console.log(`MockSocket: listening on event '${event}'`);
+        // Save callback for simulation if needed
+    },
+    off: (event) => {
+        console.log(`MockSocket: stopped listening on event '${event}'`);
+    },
+    emit: (event, data) => {
+        console.log(`MockSocket: emit event '${event}' with data:`, data);
+    },
+    disconnect: () => {
+        console.log('MockSocket: disconnected');
     }
 };
 
-export const getSocket = () => socket;
+export const connectSocket = (token) => {
+    console.log('MockSocket: connecting with token', token);
+    return mockSocket;
+};
+
+export const disconnectSocket = () => {
+    console.log('MockSocket: disconnecting');
+};
+
+export const getSocket = () => mockSocket;
+export default mockSocket;
