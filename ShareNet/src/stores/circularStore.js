@@ -1573,6 +1573,81 @@ const initialImpact = {
     wasteAvoidedKg: 317
 };
 
+const initialConversations = {
+    priya: {
+        id: 'priya',
+        name: 'Priya Patel',
+        item: 'Sony Alpha A7 III 4K Camera',
+        image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop&q=80',
+        location: 'Media Center Block B, Room 204',
+        trust: '98/100',
+        status: 'Active Exchange • Handover Ready',
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
+        online: true,
+        messages: [
+            { sender: 'Priya Patel', text: 'Hi Aditya! The camera is packed with 2 batteries and SD card. You can collect it from Media Center Block B, Room 204 at 4 PM.', time: '02:15 PM' },
+            { sender: 'Aditya Sharma', text: 'Perfect! I will be there at 4 PM sharp. Thanks Priya!', time: '02:18 PM' }
+        ],
+        replyIndex: 0,
+        botReplies: [
+            "Awesome, let me know when you reach the Media Center building.",
+            "Yes, I have the camera case and all accessories ready here.",
+            "Awesome! Please double check the condition log once I handover.",
+            "Perfect transaction, see you next time!"
+        ]
+    },
+    rohan: {
+        id: 'rohan',
+        name: 'Rohan Verma',
+        item: 'Heavy Duty Fluid Head DSLR Tripod',
+        image: 'https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?w=800&auto=format&fit=crop&q=80',
+        location: 'Hostel Block 3, Room 112',
+        trust: '91/100',
+        status: 'Exchange Completed',
+        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+        online: false,
+        messages: [
+            { sender: 'Rohan Verma', text: 'Hey Aditya, did you find the quick release plate?', time: 'Yesterday' },
+            { sender: 'Aditya Sharma', text: 'Yes, it was in the side pocket of the bag. Thanks!', time: 'Yesterday' },
+            { sender: 'Rohan Verma', text: 'Great, glad it worked out!', time: 'Yesterday' }
+        ],
+        replyIndex: 0,
+        botReplies: [
+            "Sure, let me know if you need to borrow the tripod again next week.",
+            "Happy to share! Make sure to lock the tripod legs properly.",
+            "No problem, take care!"
+        ]
+    },
+    ananya: {
+        id: 'ananya',
+        name: 'Ananya Roy',
+        item: 'Rode Wireless GO II Microphone',
+        image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=80',
+        location: 'Library Block C, Digital Desk',
+        trust: '88/100',
+        status: 'Pending Verification',
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+        online: true,
+        messages: [
+            { sender: 'Ananya Roy', text: 'Hi! Can you pick up the wireless mics tomorrow morning?', time: 'Tuesday' },
+            { sender: 'Aditya Sharma', text: 'Sure, is 9:30 AM fine?', time: 'Tuesday' },
+            { sender: 'Ananya Roy', text: 'Yes, that works perfectly.', time: 'Tuesday' }
+        ],
+        replyIndex: 0,
+        botReplies: [
+            "I will be waiting at the Library C Digital Desk at 9:30 AM tomorrow.",
+            "Please bring your student ID card for verification.",
+            "Great, see you tomorrow morning."
+        ]
+    }
+};
+
+const initialNotifications = [
+    { id: 1, title: 'Borrow Request Accepted', text: 'Priya Patel accepted your Sony Alpha Camera request. Handover Security Code: 8491', time: '5m ago', type: 'accept' },
+    { id: 2, title: 'Return Deadline Reminder', text: 'Return due in 18 hours for Sony Alpha A7 III.', time: '1h ago', type: 'reminder' },
+    { id: 3, title: 'Trust Score Increased', text: 'Your campus trust score bunted to 94/100.', time: '1d ago', type: 'trust' }
+];
+
 export const useCircularStore = create(
     persist(
         (set, get) => ({
@@ -1588,7 +1663,9 @@ export const useCircularStore = create(
             userTrustScore: 94,
             lenderEarnings: 14500,
             borrowerPersonalSavings: 28450,
-            notificationsCount: 5,
+            notificationsCount: 3,
+            notifications: initialNotifications,
+            conversations: initialConversations,
 
             setPersona: (newPersona) => set({ persona: newPersona }),
 
@@ -1662,6 +1739,8 @@ export const useCircularStore = create(
                 ]
             })),
 
+            updateConversations: (updatedConversations) => set({ conversations: updatedConversations }),
+
             createBorrowRequest: (borrowData) => set((state) => {
                 const newBorrowing = {
                     id: `bor-${Date.now()}`,
@@ -1685,11 +1764,48 @@ export const useCircularStore = create(
                 };
             }),
 
-            acceptBorrowRequest: (borrowingId) => set((state) => ({
-                borrowings: state.borrowings.map((b) =>
-                    b.id === borrowingId ? { ...b, stage: 'Accepted' } : b
-                )
-            })),
+            acceptBorrowRequest: (borrowingId) => set((state) => {
+                const securityCode = Math.floor(1000 + Math.random() * 9000).toString();
+                const updatedBorrowings = state.borrowings.map((b) =>
+                    b.id === borrowingId ? { ...b, stage: 'Accepted', securityCode } : b
+                );
+                
+                const acceptedBorrowing = state.borrowings.find(b => b.id === borrowingId);
+                const title = acceptedBorrowing ? acceptedBorrowing.title : 'Sony Alpha A7 III';
+                const owner = acceptedBorrowing ? acceptedBorrowing.ownerName : 'Priya Patel';
+                
+                const newNotification = {
+                    id: Date.now(),
+                    title: 'Borrow Request Accepted',
+                    text: `${owner} accepted your request for ${title}. Handover Security Code: ${securityCode}`,
+                    time: 'Just now',
+                    type: 'accept'
+                };
+
+                let updatedConversations = { ...state.conversations };
+                const contactKey = owner.toLowerCase().includes('rohan') ? 'rohan' :
+                                   owner.toLowerCase().includes('ananya') ? 'ananya' : 'priya';
+                
+                if (updatedConversations[contactKey]) {
+                    const chat = updatedConversations[contactKey];
+                    const welcomeMsg = {
+                        sender: owner,
+                        text: `Hi! I have accepted your request for "${title}". The Handover Security Code is ${securityCode}. Please enter this code when we meet to confirm pickup!`,
+                        time: 'Just now'
+                    };
+                    updatedConversations[contactKey] = {
+                        ...chat,
+                        messages: [...chat.messages, welcomeMsg]
+                    };
+                }
+
+                return {
+                    borrowings: updatedBorrowings,
+                    notifications: [newNotification, ...state.notifications],
+                    notificationsCount: state.notificationsCount + 1,
+                    conversations: updatedConversations
+                };
+            }),
 
             declineBorrowRequest: (borrowingId) => set((state) => ({
                 borrowings: state.borrowings.filter((b) => b.id !== borrowingId)

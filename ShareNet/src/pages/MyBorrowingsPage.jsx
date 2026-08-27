@@ -269,6 +269,7 @@ export default function MyBorrowingsPage() {
                 isOpen={!!selectedHandover}
                 onClose={() => setSelectedHandover(null)}
                 resourceName={selectedHandover?.title}
+                borrowing={selectedHandover}
                 onConfirm={() => confirmHandover(selectedHandover?.id)}
             />
 

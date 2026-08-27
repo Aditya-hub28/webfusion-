@@ -4,7 +4,7 @@ import { useCircularStore } from '../stores/circularStore';
 import toast from 'react-hot-toast';
 
 export default function MessagesPage() {
-    const { borrowings } = useCircularStore();
+    const { borrowings, conversations, updateConversations } = useCircularStore();
 
     const [activeContactId, setActiveContactId] = useState('priya');
     const [newMessage, setNewMessage] = useState('');
@@ -24,76 +24,7 @@ export default function MessagesPage() {
         return `${strHours}:${strMinutes} ${ampm}`;
     };
 
-    const [conversations, setConversations] = useState({
-        priya: {
-            id: 'priya',
-            name: 'Priya Patel',
-            item: 'Sony Alpha A7 III 4K Camera',
-            image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop&q=80',
-            location: 'Media Center Block B, Room 204',
-            trust: '98/100',
-            status: 'Active Exchange • Handover Ready',
-            avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
-            online: true,
-            messages: [
-                { sender: 'Priya Patel', text: 'Hi Aditya! The camera is packed with 2 batteries and SD card. You can collect it from Media Center Block B, Room 204 at 4 PM.', time: '02:15 PM' },
-                { sender: 'Aditya Sharma', text: 'Perfect! I will be there at 4 PM sharp. Thanks Priya!', time: '02:18 PM' }
-            ],
-            replyIndex: 0,
-            botReplies: [
-                "Awesome, let me know when you reach the Media Center building.",
-                "Yes, I have the camera case and all accessories ready here.",
-                "Awesome! Please double check the condition log once I handover.",
-                "Perfect transaction, see you next time!"
-            ]
-        },
-        rohan: {
-            id: 'rohan',
-            name: 'Rohan Verma',
-            item: 'Heavy Duty Fluid Head DSLR Tripod',
-            image: 'https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?w=800&auto=format&fit=crop&q=80',
-            location: 'Hostel Block 3, Room 112',
-            trust: '91/100',
-            status: 'Exchange Completed',
-            avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
-            online: false,
-            messages: [
-                { sender: 'Rohan Verma', text: 'Hey Aditya, did you find the quick release plate?', time: 'Yesterday' },
-                { sender: 'Aditya Sharma', text: 'Yes, it was in the side pocket of the bag. Thanks!', time: 'Yesterday' },
-                { sender: 'Rohan Verma', text: 'Great, glad it worked out!', time: 'Yesterday' }
-            ],
-            replyIndex: 0,
-            botReplies: [
-                "Sure, let me know if you need to borrow the tripod again next week.",
-                "Happy to share! Make sure to lock the tripod legs properly.",
-                "No problem, take care!"
-            ]
-        },
-        ananya: {
-            id: 'ananya',
-            name: 'Ananya Roy',
-            item: 'Rode Wireless GO II Microphone',
-            image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=80',
-            location: 'Library Block C, Digital Desk',
-            trust: '88/100',
-            status: 'Pending Verification',
-            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-            online: true,
-            messages: [
-                { sender: 'Ananya Roy', text: 'Hi! Can you pick up the wireless mics tomorrow morning?', time: 'Tuesday' },
-                { sender: 'Aditya Sharma', text: 'Sure, is 9:30 AM fine?', time: 'Tuesday' },
-                { sender: 'Ananya Roy', text: 'Yes, that works perfectly.', time: 'Tuesday' }
-            ],
-            replyIndex: 0,
-            botReplies: [
-                "I will be waiting at the Library C Digital Desk at 9:30 AM tomorrow.",
-                "Please make sure your trust profile is verified before handover.",
-                "Got it! See you tomorrow morning."
-            ]
-        }
-    });
-
-    const activeChat = conversations[activeContactId];
+    const activeChat = conversations[activeContactId] || conversations['priya'];
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -114,17 +45,15 @@ export default function MessagesPage() {
             time: getFormattedTime()
         };
 
-        // Append user message to active chat
-        setConversations(prev => {
-            const chat = prev[activeContactId];
-            return {
-                ...prev,
-                [activeContactId]: {
-                    ...chat,
-                    messages: [...chat.messages, userMsg]
-                }
-            };
-        });
+        // Append user message to active chat in store
+        const updatedConversations = {
+            ...conversations,
+            [activeContactId]: {
+                ...activeChat,
+                messages: [...activeChat.messages, userMsg]
+            }
+        };
+        updateConversations(updatedConversations);
 
         const userText = newMessage.toLowerCase();
         setNewMessage('');
@@ -134,36 +63,39 @@ export default function MessagesPage() {
 
         setTimeout(() => {
             setIsTyping(false);
-            setConversations(prev => {
-                const chat = prev[activeContactId];
-                
-                // Context aware replies
-                let botText = "";
-                if (userText.includes("location") || userText.includes("where") || userText.includes("meet")) {
-                    botText = `Let's meet at ${chat.location}. I'm on my way!`;
-                } else if (userText.includes("time") || userText.includes("when") || userText.includes("clock") || userText.includes("pm") || userText.includes("am")) {
-                    botText = "Sounds good. That time works perfectly for me.";
-                } else if (userText.includes("thank") || userText.includes("thx") || userText.includes("thanks")) {
-                    botText = "You're welcome! Glad to coordinate.";
-                } else {
-                    botText = chat.botReplies[chat.replyIndex % chat.botReplies.length];
+            
+            // Fetch fresh conversations state to avoid closure issues
+            const currentConversations = useCircularStore.getState().conversations;
+            const chat = currentConversations[activeContactId] || currentConversations['priya'];
+            
+            // Context aware replies
+            let botText = "";
+            if (userText.includes("location") || userText.includes("where") || userText.includes("meet")) {
+                botText = `Let's meet at ${chat.location}. I'm on my way!`;
+            } else if (userText.includes("time") || userText.includes("when") || userText.includes("clock") || userText.includes("pm") || userText.includes("am")) {
+                botText = "Sounds good. That time works perfectly for me.";
+            } else if (userText.includes("thank") || userText.includes("thx") || userText.includes("thanks")) {
+                botText = "You're welcome! Glad to coordinate.";
+            } else {
+                botText = chat.botReplies[chat.replyIndex % chat.botReplies.length];
+            }
+
+            const botMsg = {
+                sender: chat.name,
+                text: botText,
+                time: getFormattedTime()
+            };
+
+            const finalConversations = {
+                ...currentConversations,
+                [activeContactId]: {
+                    ...chat,
+                    messages: [...chat.messages, botMsg],
+                    replyIndex: chat.replyIndex + 1
                 }
+            };
 
-                const botMsg = {
-                    sender: chat.name,
-                    text: botText,
-                    time: getFormattedTime()
-                };
-
-                return {
-                    ...prev,
-                    [activeContactId]: {
-                        ...chat,
-                        messages: [...chat.messages, botMsg],
-                        replyIndex: chat.replyIndex + 1
-                    }
-                };
-            });
+            updateConversations(finalConversations);
             toast(`New message from ${activeChat.name}`, { icon: '💬' });
         }, 2000);
     };

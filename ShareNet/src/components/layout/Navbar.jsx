@@ -14,7 +14,7 @@ export default function Navbar() {
     const [showDropdown, setShowDropdown] = useState(false);
     const [showNotifPopover, setShowNotifPopover] = useState(false);
 
-    const { persona, setPersona, notificationsCount, userTrustScore } = useCircularStore();
+    const { persona, setPersona, notificationsCount, notifications, userTrustScore } = useCircularStore();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -71,11 +71,7 @@ export default function Navbar() {
     navLinks.push({ to: '/messages', label: 'Messages', icon: Heart });
     navLinks.push({ to: '/impact', label: 'Impact', icon: BarChart2 });
 
-    const mockNotifications = [
-        { id: 1, title: 'Borrow Request Accepted', text: 'Priya Patel accepted your Sony Alpha Camera request.', time: '5m ago', icon: CheckCircle2, color: 'text-emerald-500' },
-        { id: 2, title: 'Return Deadline Reminder', text: 'Return due in 18 hours for Sony Alpha A7 III.', time: '1h ago', icon: Clock, color: 'text-amber-500' },
-        { id: 3, title: 'Trust Score Increased', text: 'Your campus trust score bunted to 94/100.', time: '1d ago', icon: ShieldCheck, color: 'text-indigo-500' }
-    ];
+    const mockNotifications = [];
 
     return (
         <header className="sticky top-2 z-50 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
@@ -160,16 +156,27 @@ export default function Navbar() {
                                 </div>
 
                                 <div className="space-y-2 max-h-60 overflow-y-auto">
-                                    {mockNotifications.map((n) => (
-                                        <div key={n.id} className="p-2.5 bg-slate-50 border border-slate-100 rounded-2xl flex items-start gap-2.5 text-xs">
-                                            <n.icon size={16} className={`${n.color} shrink-0 mt-0.5`} />
-                                            <div className="space-y-0.5">
-                                                <span className="font-bold text-slate-900 block">{n.title}</span>
-                                                <p className="text-[11px] text-slate-500 leading-tight">{n.text}</p>
-                                                <span className="text-[9px] text-slate-400 font-medium block pt-0.5">{n.time}</span>
+                                    {(notifications || []).map((n) => {
+                                        let Icon = CheckCircle2;
+                                        let color = 'text-emerald-500';
+                                        if (n.type === 'reminder') {
+                                            Icon = Clock;
+                                            color = 'text-amber-500';
+                                        } else if (n.type === 'trust') {
+                                            Icon = ShieldCheck;
+                                            color = 'text-indigo-500';
+                                        }
+                                        return (
+                                            <div key={n.id} className="p-2.5 bg-slate-50 border border-slate-100 rounded-2xl flex items-start gap-2.5 text-xs">
+                                                <Icon size={16} className={`${color} shrink-0 mt-0.5`} />
+                                                <div className="space-y-0.5">
+                                                    <span className="font-bold text-slate-900 block">{n.title}</span>
+                                                    <p className="text-[11px] text-slate-500 leading-tight">{n.text}</p>
+                                                    <span className="text-[9px] text-slate-400 font-medium block pt-0.5">{n.time}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             </div>
                         )}
