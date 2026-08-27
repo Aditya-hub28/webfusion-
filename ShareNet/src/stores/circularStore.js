@@ -1866,7 +1866,10 @@ export const useCircularStore = create(
                 savedResourceIds: ['res-1'],
                 userTrustScore: 94,
                 lenderEarnings: 14500,
-                borrowerPersonalSavings: 28450
+                borrowerPersonalSavings: 28450,
+                notificationsCount: 3,
+                notifications: initialNotifications,
+                conversations: initialConversations
             })
         }),
         {
