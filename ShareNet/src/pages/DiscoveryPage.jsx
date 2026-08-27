@@ -15,7 +15,7 @@ export default function DiscoveryPage() {
     const [detailedProduct, setDetailedProduct] = useState(null);
     const [activeImageIdx, setActiveImageIdx] = useState(0);
 
-    const categories = ['All', 'Cameras', 'Tripods', 'Microphones', 'Lighting', 'Sports', 'Projectors'];
+    const categories = ['All', 'Electronics', 'Event & AV', 'Sports', 'Academic', 'Camping'];
 
     const filteredResources = resources.filter(r => {
         const matchesCategory = selectedCategory === 'All' || r.category === selectedCategory;
