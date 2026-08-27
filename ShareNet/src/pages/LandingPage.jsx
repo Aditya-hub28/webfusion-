@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { gsap } from 'gsap';
 import { useCircularStore } from '../stores/circularStore';
-import ProductImageGallery from '../components/ui/ProductImageGallery';
+import TenStepVerification from '../components/trust/TenStepVerification';
 import {
     Sparkles, Search, ShieldCheck, RefreshCw, Leaf, ArrowRight, Package, Mic,
     Camera, Speaker, Trophy, BookOpen, Tent, Film, CheckCircle2, Star, ChevronDown,
-    Zap, Heart, Users, MapPin, Check
+    MapPin, Check
 } from 'lucide-react';
 import Button from '../components/ui/Button';
 import toast from 'react-hot-toast';
@@ -15,7 +16,27 @@ export default function LandingPage() {
     const [selectedCategory, setSelectedCategory] = useState('Electronics');
     const [openFaq, setOpenFaq] = useState(null);
     const navigate = useNavigate();
-    const { resources, kits } = useCircularStore();
+    const { resources } = useCircularStore();
+
+    const heroRef = useRef(null);
+    const statsRef = useRef(null);
+
+    useEffect(() => {
+        if (heroRef.current) {
+            gsap.fromTo(
+                heroRef.current.children,
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' }
+            );
+        }
+        if (statsRef.current) {
+            gsap.fromTo(
+                statsRef.current.children,
+                { opacity: 0, scale: 0.9 },
+                { opacity: 1, scale: 1, duration: 0.6, stagger: 0.1, delay: 0.4, ease: 'back.out(1.7)' }
+            );
+        }
+    }, []);
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -42,7 +63,6 @@ export default function LandingPage() {
     };
 
     const categoriesList = ['Electronics', 'Event & AV', 'Sports', 'Academic', 'Camping'];
-
     const categoryPreviewItems = resources.filter(r => r.category === selectedCategory).slice(0, 3);
 
     const faqs = [
@@ -66,16 +86,17 @@ export default function LandingPage() {
 
     return (
         <div className="space-y-16 pb-12">
-            {/* HERO SECTION */}
+            {/* HERO SECTION WITH GSAP ANIMATIONS */}
             <section className="relative overflow-hidden pt-12 pb-20 bg-gradient-to-b from-slate-950 via-slate-900 to-indigo-950 text-white rounded-b-[48px] shadow-2xl border-b border-indigo-900/50">
-                {/* Background Decorative Blur Orbs */}
                 <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-emerald-500/10 blur-[120px] pointer-events-none rounded-full"></div>
                 <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-indigo-500/10 blur-[100px] pointer-events-none rounded-full"></div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8 text-center">
+                <div ref={heroRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8 text-center">
                     {/* Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-700 text-emerald-400 text-xs font-black uppercase tracking-widest shadow-lg">
-                        <Sparkles size={16} /> Campus Circular Ecosystem • AI Need-Based Discovery
+                    <div>
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-700 text-emerald-400 text-xs font-black uppercase tracking-widest shadow-lg">
+                            <Sparkles size={16} /> Campus Circular Ecosystem • GSAP Animated Engine
+                        </div>
                     </div>
 
                     {/* Headline */}
@@ -126,25 +147,25 @@ export default function LandingPage() {
                         </button>
                         <button
                             onClick={() => handlePresetPrompt('I need a podcast microphone setup')}
-                            className="bg-slate-800/90 hover:bg-emerald-950 text-teal-300 border border-slate-700 px-3 py-1.5 rounded-xl transition-all font-bold"
+                            className="bg-slate-800/90 hover:bg-emerald-950 text-teal-300 border border-slate-700 px-3 py-1.5 rounded-all font-bold"
                         >
                             🎙️ "Podcast setup"
                         </button>
                         <button
                             onClick={() => handlePresetPrompt('I need a projector for a presentation tomorrow')}
-                            className="bg-slate-800/90 hover:bg-emerald-950 text-indigo-300 border border-slate-700 px-3 py-1.5 rounded-xl transition-all font-bold"
+                            className="bg-slate-800/90 hover:bg-emerald-950 text-indigo-300 border border-slate-700 px-3 py-1.5 rounded-all font-bold"
                         >
                             📊 "Projector for presentation"
                         </button>
                         <button
                             onClick={() => handlePresetPrompt('I need a cricket bat kit for a weekend match')}
-                            className="bg-slate-800/90 hover:bg-emerald-950 text-amber-300 border border-slate-700 px-3 py-1.5 rounded-xl transition-all font-bold"
+                            className="bg-slate-800/90 hover:bg-emerald-950 text-amber-300 border border-slate-700 px-3 py-1.5 rounded-all font-bold"
                         >
                             🏏 "Cricket bat match kit"
                         </button>
                         <button
                             onClick={() => handlePresetPrompt('I need camping tent equipment for outdoor trekking')}
-                            className="bg-slate-800/90 hover:bg-emerald-950 text-purple-300 border border-slate-700 px-3 py-1.5 rounded-xl transition-all font-bold"
+                            className="bg-slate-800/90 hover:bg-emerald-950 text-purple-300 border border-slate-700 px-3 py-1.5 rounded-all font-bold"
                         >
                             ⛺ "Camping tent & trekking"
                         </button>
@@ -164,8 +185,8 @@ export default function LandingPage() {
                         </Link>
                     </div>
 
-                    {/* Impact Stats Strip */}
-                    <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-5xl mx-auto text-xs">
+                    {/* Impact Stats Strip with GSAP Stagger */}
+                    <div ref={statsRef} className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-5xl mx-auto text-xs">
                         <div className="bg-slate-900/90 backdrop-blur-md p-4 rounded-2xl border border-slate-800 space-y-1">
                             <div className="font-black text-emerald-400 text-2xl">₹48,250</div>
                             <div className="text-slate-400 text-[11px] font-bold uppercase">Est. Student Money Saved</div>
@@ -186,47 +207,9 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* 3-STEP HOW IT WORKS */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-                <div className="text-center space-y-2">
-                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">Simple & Secure Process</span>
-                    <h2 className="text-2xl sm:text-4xl font-black text-slate-900">How Campus Circular Works</h2>
-                    <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
-                        Borrow what you need in 3 easy steps with institutional verification and deposit protection.
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-3xl border-2 border-slate-200 hover:border-emerald-500 transition-all space-y-4 shadow-sm">
-                        <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 font-black text-xl">
-                            1
-                        </div>
-                        <h3 className="text-lg font-black text-slate-900">🔍 AI Need-Based Search</h3>
-                        <p className="text-xs text-slate-600 leading-relaxed">
-                            Describe your need in natural language (e.g. "shoot a reel", "calculator for exam") or filter through 5 campus categories.
-                        </p>
-                    </div>
-
-                    <div className="bg-white p-6 rounded-3xl border-2 border-slate-200 hover:border-emerald-500 transition-all space-y-4 shadow-sm">
-                        <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 font-black text-xl">
-                            2
-                        </div>
-                        <h3 className="text-lg font-black text-slate-900">🔒 Escrow Deposit Protection</h3>
-                        <p className="text-xs text-slate-600 leading-relaxed">
-                            Lock in your borrow dates with refundable security deposit held safely in escrow until successful return inspection.
-                        </p>
-                    </div>
-
-                    <div className="bg-white p-6 rounded-3xl border-2 border-slate-200 hover:border-emerald-500 transition-all space-y-4 shadow-sm">
-                        <div className="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600 font-black text-xl">
-                            3
-                        </div>
-                        <h3 className="text-lg font-black text-slate-900">📱 Digital QR Handover</h3>
-                        <p className="text-xs text-slate-600 leading-relaxed">
-                            Meet on campus, scan QR code or enter passcode for digital handover, and get instant deposit refund upon return.
-                        </p>
-                    </div>
-                </div>
+            {/* 10-STEP VERIFICATION ARCHITECTURE COMPONENT */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <TenStepVerification />
             </section>
 
             {/* 5 FEATURED CAMPUS CATEGORIES SHOWCASE */}
@@ -325,36 +308,6 @@ export default function LandingPage() {
                             Open Equipment Kits Studio →
                         </Button>
                     </Link>
-                </div>
-            </section>
-
-            {/* TRUST & SECURITY GUARANTEES */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-                <div className="bg-white rounded-3xl p-8 border-2 border-slate-200 shadow-sm space-y-6">
-                    <div className="text-center space-y-1">
-                        <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">Institutional Safety</span>
-                        <h2 className="text-2xl font-black text-slate-900">Campus Verification & Trust Guarantees</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-600">
-                        <div className="space-y-2 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                            <ShieldCheck size={24} className="text-emerald-600" />
-                            <h4 className="font-bold text-slate-900 text-sm">Verified Campus Email IDs</h4>
-                            <p className="leading-relaxed">All borrowers & lenders are authenticated via official institutional emails ensuring 100% campus accountability.</p>
-                        </div>
-
-                        <div className="space-y-2 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                            <Star size={24} className="text-indigo-600" />
-                            <h4 className="font-bold text-slate-900 text-sm">7-Factor Reputation Trust Score</h4>
-                            <p className="leading-relaxed">Every transaction builds your campus trust rating based on on-time returns, item condition, and lender feedback.</p>
-                        </div>
-
-                        <div className="space-y-2 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                            <RefreshCw size={24} className="text-teal-600" />
-                            <h4 className="font-bold text-slate-900 text-sm">Escrow Security Holds</h4>
-                            <p className="leading-relaxed">Refundable security deposits are held safely in platform escrow and released immediately upon return inspection.</p>
-                        </div>
-                    </div>
                 </div>
             </section>
 
